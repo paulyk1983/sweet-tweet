@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :tweets, only: [:new, :create]
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
+
+  get '/tweets' => 'tweets#index'
  
   root to: 'home#show'
 
