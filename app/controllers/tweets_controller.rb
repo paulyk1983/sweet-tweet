@@ -1,4 +1,8 @@
 class TweetsController < ApplicationController
+  def index
+    @user = client.user("@Paulyk1983")
+  end
+
   def new
   end
 
