@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   def index
-    @user = client.user("@Paulyk1983")
+    @timeline = current_user.user_tweets
   end
 
   def new
