@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  
+  namespace :api do
+    namespace :v1 do
+      get '/tweets' => 'tweets#index'
+    end
+  end
+  
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   
