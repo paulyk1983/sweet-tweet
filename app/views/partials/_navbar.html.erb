@@ -1,17 +1,21 @@
 <header class="topnavbar-wrapper">
-   <nav role="navigation" class="navbar topnavbar">
-      <div class="navbar-header">
-         <a href="#/" class="navbar-brand">
-            <div class="brand-logo">
-               <img src="img/logo.png" alt="App Logo" class="img-responsive">
+   <nav role="navigation" class="navbar topnavbar">      
+         <% if current_user %>
+            <div class="navbar-header">                    
+               <a href="#/" class="navbar-brand">
+                  <div class="brand-logo">
+                     <h2 style='color:white; margin-top:0px;'>Sweet Tweet</h2>
+                     <!-- <img src="img/logo.png" alt="App Logo" class="img-responsive"> -->
+                  </div>
+                  <div class="brand-logo-collapsed">
+                     <img src="img/logo-single.png" alt="App Logo" class="img-responsive">
+                  </div>
+               </a>     
             </div>
-            <div class="brand-logo-collapsed">
-               <img src="img/logo-single.png" alt="App Logo" class="img-responsive">
-            </div>
-         </a>
-      </div>
+         <% end %>
       <div class="nav-wrapper">
          <ul class="nav navbar-nav">
+            <% if current_user %>
             <li>
                <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
                <a href="#" data-trigger-resize="" data-toggle-state="aside-collapsed" class="hidden-xs">
@@ -32,6 +36,9 @@
                </a>
             </li>
              END lock screen-->
+             <% else %>
+               <h2 style='color:white; margin-top:10px;'>Welcome to Sweet Tweet!</h2>
+             <% end %>
          </ul>
          <!-- END Left navbar-->
          <!-- START Right Navbar-->
