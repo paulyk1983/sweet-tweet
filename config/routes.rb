@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'dashboard/show'
+
   namespace :api do
     namespace :v1 do
       get '/tweets' => 'tweets#index'
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   resource :home, only: [:show]
 
   get '/tweets' => 'tweets#index'
+  get '/dashboard' => 'dashboard#show'
  
   root to: 'home#show'
 

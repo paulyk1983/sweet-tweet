@@ -1,0 +1,397 @@
+<div class="content-wrapper">
+  <div class="content-heading">
+     <!-- START Language list-->
+     <div class="pull-right">
+        <div class="btn-group">
+           <button type="button" data-toggle="dropdown" class="btn btn-default">English</button>
+           <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInUpShort">
+              <li><a href="#" data-set-lang="en">English</a>
+              </li>
+              <li><a href="#" data-set-lang="es">Spanish</a>
+              </li>
+           </ul>
+        </div>
+     </div>
+     <!-- END Language list    -->
+     Dashboard
+     <small data-localize="dashboard.WELCOME"></small>
+  </div>
+  <!-- START widgets box-->
+  <div class="row">
+     <div class="col-lg-3 col-sm-6">
+        <!-- START widget-->
+        <div class="panel widget bg-primary">
+           <div class="row row-table">
+              <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+                 <em class="icon-cloud-upload fa-3x"></em>
+              </div>
+              <div class="col-xs-8 pv-lg">
+                 <div class="h2 mt0">1700</div>
+                 <div class="text-uppercase">Uploads</div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="col-lg-3 col-sm-6">
+        <!-- START widget-->
+        <div class="panel widget bg-purple">
+           <div class="row row-table">
+              <div class="col-xs-4 text-center bg-purple-dark pv-lg">
+                 <em class="icon-globe fa-3x"></em>
+              </div>
+              <div class="col-xs-8 pv-lg">
+                 <div class="h2 mt0">700
+                    <small>GB</small>
+                 </div>
+                 <div class="text-uppercase">Quota</div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="col-lg-3 col-md-6 col-sm-12">
+        <!-- START widget-->
+        <div class="panel widget bg-green">
+           <div class="row row-table">
+              <div class="col-xs-4 text-center bg-green-dark pv-lg">
+                 <em class="icon-bubbles fa-3x"></em>
+              </div>
+              <div class="col-xs-8 pv-lg">
+                 <div class="h2 mt0">500</div>
+                 <div class="text-uppercase">Reviews</div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <div class="col-lg-3 col-md-6 col-sm-12">
+        <!-- START date widget-->
+        <div class="panel widget">
+           <div class="row row-table">
+              <div class="col-xs-4 text-center bg-green pv-lg">
+                 <!-- See formats: https://docs.angularjs.org/api/ng/filter/date-->
+                 <div data-now="" data-format="MMMM" class="text-sm"></div>
+                 <br>
+                 <div data-now="" data-format="D" class="h2 mt0"></div>
+              </div>
+              <div class="col-xs-8 pv-lg">
+                 <div data-now="" data-format="dddd" class="text-uppercase"></div>
+                 <br>
+                 <div data-now="" data-format="h:mm" class="h2 mt0"></div>
+                 <div data-now="" data-format="a" class="text-muted text-sm"></div>
+              </div>
+           </div>
+        </div>
+        <!-- END date widget    -->
+     </div>
+  </div>
+  <!-- END widgets box-->
+  <div class="row">
+     <!-- START dashboard main content-->
+     <div class="col-lg-9">
+        <!-- START chart-->
+        <div class="row">
+           <div class="col-lg-12">
+              <!-- START widget-->
+              <div id="panelChart9" class="panel panel-default panel-demo">
+                 <div class="panel-heading">
+                    <a href="#" data-tool="panel-refresh" data-toggle="tooltip" title="" class="pull-right" data-original-title="Refresh Panel">
+                       <em class="fa fa-refresh"></em>
+                    </a>
+                    <a href="#" data-tool="panel-collapse" data-toggle="tooltip" title="" class="pull-right" data-original-title="Collapse Panel">
+                       <em class="fa fa-minus"></em>
+                    </a>
+                    <div class="panel-title">Inbound visitor statistics</div>
+                 </div>
+                 <div class="panel-wrapper collapse in" aria-expanded="true"><div class="panel-body">
+                    <div class="chart-spline flot-chart" style="padding: 0px; position: relative;"><canvas class="flot-base" width="711" height="250" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 711px; height: 250px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 101px; top: 232px; left: 15px; text-align: center;">Mar</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 101px; top: 232px; left: 129px; text-align: center;">Apr</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 101px; top: 232px; left: 239px; text-align: center;">May</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 101px; top: 232px; left: 353px; text-align: center;">Jun</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 101px; top: 232px; left: 468px; text-align: center;">Jul</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 101px; top: 232px; left: 577px; text-align: center;">Aug</div><div class="flot-tick-label tickLabel" style="position: absolute; max-width: 101px; top: 232px; left: 690px; text-align: center;">Sep</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 219px; left: 13px; text-align: right;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 146px; left: 7px; text-align: right;">50</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 74px; left: 1px; text-align: right;">100</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 2px; left: 1px; text-align: right;">150</div></div></div><canvas class="flot-overlay" width="711" height="250" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 711px; height: 250px;"></canvas><div class="legend"><div style="position: absolute; width: 78px; height: 43px; top: 15px; right: 16px; opacity: 0.85; background-color: rgb(252, 252, 252);"> </div><table style="position:absolute;top:15px;right:16px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid #768294;overflow:hidden"></div></div></td><td class="legendLabel">Uniques</td></tr><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid #1f92fe;overflow:hidden"></div></div></td><td class="legendLabel">Recurrent</td></tr></tbody></table></div></div>
+                 </div></div>
+              </div>
+              <!-- END widget-->
+           </div>
+        </div>
+        <!-- END chart-->
+        <!-- START multiple list group -->
+        <div class="list-group">
+           <a href="#" class="list-group-item">
+              <table class="wd-wide">
+                 <tbody>
+                    <tr>
+                       <td class="wd-xs">
+                          <div class="ph">
+                             <img src="img/dummy.png" alt="" class="media-box-object img-responsive img-rounded thumb64">
+                          </div>
+                       </td>
+                       <td>
+                          <div class="ph">
+                             <h4 class="media-box-heading">Project A</h4>
+                             <small class="text-muted">Vestibulum ante ipsum primis in faucibus orci</small>
+                          </div>
+                       </td>
+                       <td class="wd-sm hidden-xs hidden-sm">
+                          <div class="ph">
+                             <p class="m0">Last change</p>
+                             <small class="text-muted">4 weeks ago</small>
+                          </div>
+                       </td>
+                       <td class="wd-xs hidden-xs hidden-sm">
+                          <div class="ph">
+                             <p class="m0 text-muted">
+                                <em class="icon-users mr fa-lg"></em>26</p>
+                          </div>
+                       </td>
+                       <td class="wd-xs hidden-xs hidden-sm">
+                          <div class="ph">
+                             <p class="m0 text-muted">
+                                <em class="icon-doc mr fa-lg"></em>3500</p>
+                          </div>
+                       </td>
+                       <td class="wd-sm">
+                          <div class="ph">
+                             <progressbar value="80" type="success" class="m0 progress-xs">80%</progressbar>
+                          </div>
+                       </td>
+                    </tr>
+                 </tbody>
+              </table>
+           </a>
+        </div>
+        <div class="list-group">
+          <a href="#" class="list-group-item">
+            <table class="wd-wide">
+              <tbody>
+                <tr>
+                   <td class="wd-xs">
+                      <div class="ph">
+                         <img src="img/dummy.png" alt="" class="media-box-object img-responsive img-rounded thumb64">
+                      </div>
+                   </td>
+                   <td>
+                      <div class="ph">
+                         <h4 class="media-box-heading">Project X</h4>
+                         <small class="text-muted">Vestibulum ante ipsum primis in faucibus orci</small>
+                      </div>
+                   </td>
+                   <td class="wd-sm hidden-xs hidden-sm">
+                      <div class="ph">
+                         <p class="m0">Last change</p>
+                         <small class="text-muted">Today at 06:23 am</small>
+                      </div>
+                   </td>
+                   <td class="wd-xs hidden-xs hidden-sm">
+                      <div class="ph">
+                         <p class="m0 text-muted">
+                            <em class="icon-users mr fa-lg"></em>3</p>
+                      </div>
+                   </td>
+                   <td class="wd-xs hidden-xs hidden-sm">
+                      <div class="ph">
+                         <p class="m0 text-muted">
+                            <em class="icon-doc mr fa-lg"></em>150</p>
+                      </div>
+                   </td>
+                   <td class="wd-sm">
+                      <div class="ph">
+                         <progressbar value="50" type="purple" class="m0 progress-xs">50%</progressbar>
+                      </div>
+                   </td>
+                  </tr>
+               </tbody>
+            </table>
+         </a>
+        </div>
+        <div class="list-group">
+         <a href="#" class="list-group-item">
+            <table class="wd-wide">
+               <tbody>
+                  <tr>
+                     <td class="wd-xs">
+                        <div class="ph">
+                           <img src="img/dummy.png" alt="" class="media-box-object img-responsive img-rounded thumb64">
+                        </div>
+                     </td>
+                     <td>
+                        <div class="ph">
+                           <h4 class="media-box-heading">Project Z</h4>
+                           <small class="text-muted">Vestibulum ante ipsum primis in faucibus orci</small>
+                        </div>
+                     </td>
+                     <td class="wd-sm hidden-xs hidden-sm">
+                        <div class="ph">
+                           <p class="m0">Last change</p>
+                           <small class="text-muted">Yesterday at 10:20 pm</small>
+                        </div>
+                     </td>
+                     <td class="wd-xs hidden-xs hidden-sm">
+                        <div class="ph">
+                           <p class="m0 text-muted">
+                              <em class="icon-users mr fa-lg"></em>15</p>
+                        </div>
+                     </td>
+                     <td class="wd-xs hidden-xs hidden-sm">
+                        <div class="ph">
+                           <p class="m0 text-muted">
+                              <em class="icon-doc mr fa-lg"></em>480</p>
+                        </div>
+                     </td>
+                     <td class="wd-sm">
+                        <div class="ph">
+                           <progressbar value="20" type="green" class="m0 progress-xs">20%</progressbar>
+                        </div>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </a>
+         <!-- END dashboard main content-->
+        </div>
+        <!-- END multiple list group -->
+        
+     </div>
+     <!-- END dashboard main content-->
+     <!-- START dashboard sidebar-->
+     <aside class="col-lg-3">
+        <!-- START loader widget-->
+        <div class="panel panel-default">
+           <div class="panel-body">
+              <a href="#" class="text-muted pull-right">
+                 <em class="fa fa-arrow-right"></em>
+              </a>
+              <div class="text-info">Average Monthly Uploads</div>
+              <canvas data-classyloader="" data-percentage="70" data-speed="20" data-font-size="40px" data-diameter="70" data-line-color="#23b7e5" data-remaining-line-color="rgba(200,200,200,0.4)" data-line-width="10" data-rounded-line="true" class="center-block js-is-in-view" width="200" height="200"></canvas>
+              <div data-sparkline="" data-bar-color="#23b7e5" data-height="30" data-bar-width="5" data-bar-spacing="2" data-values="5,4,8,7,8,5,4,6,5,5,9,4,6,3,4,7,5,4,7" class="text-center"></div>
+           </div>
+           <div class="panel-footer">
+              <p class="text-muted">
+                 <em class="fa fa-upload fa-fw"></em>
+                 <span>This Month</span>
+                 <span class="text-dark">1000 Gb</span>
+              </p>
+           </div>
+        </div>
+        <!-- END loader widget-->
+        <!-- START messages and activity-->
+        <div class="panel panel-default">
+           <div class="panel-heading">
+              <div class="panel-title">Latest activities</div>
+           </div>
+           <!-- START list group-->
+           <div class="list-group">
+              <!-- START list group item-->
+              <div class="list-group-item">
+                 <div class="media-box">
+                    <div class="pull-left">
+                       <span class="fa-stack">
+                          <em class="fa fa-circle fa-stack-2x text-purple"></em>
+                          <em class="fa fa-cloud-upload fa-stack-1x fa-inverse text-white"></em>
+                       </span>
+                    </div>
+                    <div class="media-box-body clearfix">
+                       <small class="text-muted pull-right ml">15m</small>
+                       <div class="media-box-heading"><a href="#" class="text-purple m0">NEW FILE</a>
+                       </div>
+                       <p class="m0">
+                          <small><a href="#">Bootstrap.xls</a>
+                          </small>
+                       </p>
+                    </div>
+                 </div>
+              </div>
+              <!-- END list group item-->
+              <!-- START list group item-->
+              <div class="list-group-item">
+                 <div class="media-box">
+                    <div class="pull-left">
+                       <span class="fa-stack">
+                          <em class="fa fa-circle fa-stack-2x text-info"></em>
+                          <em class="fa fa-file-text-o fa-stack-1x fa-inverse text-white"></em>
+                       </span>
+                    </div>
+                    <div class="media-box-body clearfix">
+                       <small class="text-muted pull-right ml">2h</small>
+                       <div class="media-box-heading"><a href="#" class="text-info m0">NEW DOCUMENT</a>
+                       </div>
+                       <p class="m0">
+                          <small><a href="#">Bootstrap.doc</a>
+                          </small>
+                       </p>
+                    </div>
+                 </div>
+              </div>
+              <!-- END list group item-->
+              <!-- START list group item-->
+              <div class="list-group-item">
+                 <div class="media-box">
+                    <div class="pull-left">
+                       <span class="fa-stack">
+                          <em class="fa fa-circle fa-stack-2x text-danger"></em>
+                          <em class="fa fa-exclamation fa-stack-1x fa-inverse text-white"></em>
+                       </span>
+                    </div>
+                    <div class="media-box-body clearfix">
+                       <small class="text-muted pull-right ml">5h</small>
+                       <div class="media-box-heading"><a href="#" class="text-danger m0">BROADCAST</a>
+                       </div>
+                       <p class="m0"><a href="#">Read</a>
+                       </p>
+                    </div>
+                 </div>
+              </div>
+              <!-- END list group item-->
+              <!-- START list group item-->
+              <div class="list-group-item">
+                 <div class="media-box">
+                    <div class="pull-left">
+                       <span class="fa-stack">
+                          <em class="fa fa-circle fa-stack-2x text-success"></em>
+                          <em class="fa fa-clock-o fa-stack-1x fa-inverse text-white"></em>
+                       </span>
+                    </div>
+                    <div class="media-box-body clearfix">
+                       <small class="text-muted pull-right ml">15h</small>
+                       <div class="media-box-heading"><a href="#" class="text-success m0">NEW MEETING</a>
+                       </div>
+                       <p class="m0">
+                          <small>On
+                             <em>10/12/2015 09:00 am</em>
+                          </small>
+                       </p>
+                    </div>
+                 </div>
+              </div>
+              <!-- END list group item-->
+              <!-- START list group item-->
+              <div class="list-group-item">
+                 <div class="media-box">
+                    <div class="pull-left">
+                       <span class="fa-stack">
+                          <em class="fa fa-circle fa-stack-2x text-warning"></em>
+                          <em class="fa fa-tasks fa-stack-1x fa-inverse text-white"></em>
+                       </span>
+                    </div>
+                    <div class="media-box-body clearfix">
+                       <small class="text-muted pull-right ml">1w</small>
+                       <div class="media-box-heading"><a href="#" class="text-warning m0">TASKS COMPLETION</a>
+                       </div>
+                       <div class="progress progress-xs m0">
+                          <div role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" style="width: 22%" class="progress-bar progress-bar-warning progress-bar-striped">
+                             <span class="sr-only">22% Complete</span>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <!-- END list group item-->
+           </div>
+           <!-- END list group-->
+           <!-- START panel footer-->
+           <div class="panel-footer clearfix">
+              <a href="#" class="pull-left">
+                 <small>Load more</small>
+              </a>
+           </div>
+           <!-- END panel-footer-->
+        </div>
+        <!-- END messages and activity-->
+     </aside>
+     <!-- END dashboard sidebar-->
+  </div>
+</div>
