@@ -33,14 +33,18 @@
 <body>
   <div class="wrapper">
     <%= render "partials/navbar" %>
-    <%= render "partials/sidebar" %>
-    <%= render "partials/offsidebar" %>
+
+    <% if current_user %>
+      <%= render "partials/sidebar" %>
+      <%= render "partials/offsidebar" %>
+    <% end %>  
 
     <section>
       <%= yield %>
     </section>
-  
+    <!-- Page footer-->
     <footer>
+       <!-- <span>© 2016 - Angle</span> -->
        <span>© 2016 - Sweet Tweet</span>
     </footer>
   </div>
