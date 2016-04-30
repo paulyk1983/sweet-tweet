@@ -1,3 +1,4 @@
 <% @timeline.each do |tweet| %>
   <p><%= tweet.text %></p>
+  <p><%= tweet.user.screen_name %></p>
 <% end %>

@@ -29,6 +29,6 @@ class User < ActiveRecord::Base
       config.access_token_secret = oauth_secret
     end
 
-    client.user_timeline("@paulyk1983")
+    client.user_timeline(client.user.screen_name)
   end
 end
