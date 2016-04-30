@@ -110,6 +110,47 @@
         <!-- END chart-->
         <!-- START multiple list group -->
         <h2>Most Current Tweets</h2>
+        <div class="list-group">
+             <a href="#" class="list-group-item">
+                <table class="wd-wide">
+                   <tbody>
+                      <tr>                    
+                         <td class="wd-xs">
+                            <div class="ph">
+                            <p class="m0">Image</p>
+                            </div>
+                         </td>
+                         <td>
+                            <div class="ph">
+                               <p class="m0">Text</p>
+                            </div>
+                         </td>
+                         <td class="wd-sm hidden-xs hidden-sm">
+                            <div class="ph">
+                               <p class="m0">Date</p>
+                            </div>
+                         </td>
+                         <td class="wd-xs hidden-xs hidden-sm">
+                            <div class="ph">
+                               <p class="m0">
+                                  <em class="icon-users mr fa-lg"></em>Retweets</p>
+                            </div>
+                         </td>
+                         <td class="wd-xs hidden-xs hidden-sm">
+                            <div class="ph">
+                               <p class="m0">Favorites</p>
+                            </div>
+                         </td>
+                         <td class="wd-sm">
+                            <div class="ph">
+                               <progressbar value="80" type="success" class="m0 progress-xs">Rank</progressbar>
+                            </div>
+                         </td>
+                      </tr>
+                   </tbody>
+                </table>
+             </a>
+        </div>         
         <% @timeline.each_with_index do |tweet, i| %>
           <% if i < 3 %>
             <div class="list-group">
@@ -119,7 +160,9 @@
                       <tr>
                          <td class="wd-xs">
                             <div class="ph">
-                               <img src="img/dummy.png" alt="" class="media-box-object img-responsive img-rounded thumb64">
+                              <% tweet.media.each do |image|%>
+                                <img src="<%= image.media_url %>" alt="" class="media-box-object img-responsive img-rounded thumb64">                                                         
+                              <% end %>                                                             
                             </div>
                          </td>
                          <td>
@@ -129,21 +172,19 @@
                             </div>
                          </td>
                          <td class="wd-sm hidden-xs hidden-sm">
-                            <div class="ph">
-                               <p class="m0">Last change</p>
-                               <small class="text-muted">4 weeks ago</small>
+                            <div class="ph">                               
+                               <small class="text-muted"><%= tweet.created_at.strftime('%b %e, %l:%M %p') %></small>
                             </div>
                          </td>
                          <td class="wd-xs hidden-xs hidden-sm">
                             <div class="ph">
                                <p class="m0 text-muted">
-                                  <em class="icon-users mr fa-lg"></em>26</p>
+                                  <em class="icon-users mr fa-lg"></em><%= tweet.retweet_count %></p>
                             </div>
                          </td>
                          <td class="wd-xs hidden-xs hidden-sm">
                             <div class="ph">
-                               <p class="m0 text-muted">
-                                  <em class="icon-doc mr fa-lg"></em>3500</p>
+                               <p class="m0 text-muted"><%= tweet.favorites_count %></p>
                             </div>
                          </td>
                          <td class="wd-sm">
