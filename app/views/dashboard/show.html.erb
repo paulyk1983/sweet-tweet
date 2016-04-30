@@ -109,139 +109,57 @@
         </div>
         <!-- END chart-->
         <!-- START multiple list group -->
-        <div class="list-group">
-           <a href="#" class="list-group-item">
-              <table class="wd-wide">
-                 <tbody>
-                    <tr>
-                       <td class="wd-xs">
-                          <div class="ph">
-                             <img src="img/dummy.png" alt="" class="media-box-object img-responsive img-rounded thumb64">
-                          </div>
-                       </td>
-                       <td>
-                          <div class="ph">
-                             <h4 class="media-box-heading">Project A</h4>
-                             <small class="text-muted">Vestibulum ante ipsum primis in faucibus orci</small>
-                          </div>
-                       </td>
-                       <td class="wd-sm hidden-xs hidden-sm">
-                          <div class="ph">
-                             <p class="m0">Last change</p>
-                             <small class="text-muted">4 weeks ago</small>
-                          </div>
-                       </td>
-                       <td class="wd-xs hidden-xs hidden-sm">
-                          <div class="ph">
-                             <p class="m0 text-muted">
-                                <em class="icon-users mr fa-lg"></em>26</p>
-                          </div>
-                       </td>
-                       <td class="wd-xs hidden-xs hidden-sm">
-                          <div class="ph">
-                             <p class="m0 text-muted">
-                                <em class="icon-doc mr fa-lg"></em>3500</p>
-                          </div>
-                       </td>
-                       <td class="wd-sm">
-                          <div class="ph">
-                             <progressbar value="80" type="success" class="m0 progress-xs">80%</progressbar>
-                          </div>
-                       </td>
-                    </tr>
-                 </tbody>
-              </table>
-           </a>
-        </div>
-        <div class="list-group">
-          <a href="#" class="list-group-item">
-            <table class="wd-wide">
-              <tbody>
-                <tr>
-                   <td class="wd-xs">
-                      <div class="ph">
-                         <img src="img/dummy.png" alt="" class="media-box-object img-responsive img-rounded thumb64">
-                      </div>
-                   </td>
-                   <td>
-                      <div class="ph">
-                         <h4 class="media-box-heading">Project X</h4>
-                         <small class="text-muted">Vestibulum ante ipsum primis in faucibus orci</small>
-                      </div>
-                   </td>
-                   <td class="wd-sm hidden-xs hidden-sm">
-                      <div class="ph">
-                         <p class="m0">Last change</p>
-                         <small class="text-muted">Today at 06:23 am</small>
-                      </div>
-                   </td>
-                   <td class="wd-xs hidden-xs hidden-sm">
-                      <div class="ph">
-                         <p class="m0 text-muted">
-                            <em class="icon-users mr fa-lg"></em>3</p>
-                      </div>
-                   </td>
-                   <td class="wd-xs hidden-xs hidden-sm">
-                      <div class="ph">
-                         <p class="m0 text-muted">
-                            <em class="icon-doc mr fa-lg"></em>150</p>
-                      </div>
-                   </td>
-                   <td class="wd-sm">
-                      <div class="ph">
-                         <progressbar value="50" type="purple" class="m0 progress-xs">50%</progressbar>
-                      </div>
-                   </td>
-                  </tr>
-               </tbody>
-            </table>
-         </a>
-        </div>
-        <div class="list-group">
-         <a href="#" class="list-group-item">
-            <table class="wd-wide">
-               <tbody>
-                  <tr>
-                     <td class="wd-xs">
-                        <div class="ph">
-                           <img src="img/dummy.png" alt="" class="media-box-object img-responsive img-rounded thumb64">
-                        </div>
-                     </td>
-                     <td>
-                        <div class="ph">
-                           <h4 class="media-box-heading">Project Z</h4>
-                           <small class="text-muted">Vestibulum ante ipsum primis in faucibus orci</small>
-                        </div>
-                     </td>
-                     <td class="wd-sm hidden-xs hidden-sm">
-                        <div class="ph">
-                           <p class="m0">Last change</p>
-                           <small class="text-muted">Yesterday at 10:20 pm</small>
-                        </div>
-                     </td>
-                     <td class="wd-xs hidden-xs hidden-sm">
-                        <div class="ph">
-                           <p class="m0 text-muted">
-                              <em class="icon-users mr fa-lg"></em>15</p>
-                        </div>
-                     </td>
-                     <td class="wd-xs hidden-xs hidden-sm">
-                        <div class="ph">
-                           <p class="m0 text-muted">
-                              <em class="icon-doc mr fa-lg"></em>480</p>
-                        </div>
-                     </td>
-                     <td class="wd-sm">
-                        <div class="ph">
-                           <progressbar value="20" type="green" class="m0 progress-xs">20%</progressbar>
-                        </div>
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </a>
-         <!-- END dashboard main content-->
-        </div>
+        <h2>Most Current Tweets</h2>
+        <% @timeline.each_with_index do |tweet, i| %>
+          <% if i < 3 %>
+            <div class="list-group">
+             <a href="#" class="list-group-item">
+                <table class="wd-wide">
+                   <tbody>
+                      <tr>
+                         <td class="wd-xs">
+                            <div class="ph">
+                               <img src="img/dummy.png" alt="" class="media-box-object img-responsive img-rounded thumb64">
+                            </div>
+                         </td>
+                         <td>
+                            <div class="ph">
+                               <!-- <h4 class="media-box-heading">Project A</h4> -->
+                               <small class="text-muted"><%= tweet.text %></small>
+                            </div>
+                         </td>
+                         <td class="wd-sm hidden-xs hidden-sm">
+                            <div class="ph">
+                               <p class="m0">Last change</p>
+                               <small class="text-muted">4 weeks ago</small>
+                            </div>
+                         </td>
+                         <td class="wd-xs hidden-xs hidden-sm">
+                            <div class="ph">
+                               <p class="m0 text-muted">
+                                  <em class="icon-users mr fa-lg"></em>26</p>
+                            </div>
+                         </td>
+                         <td class="wd-xs hidden-xs hidden-sm">
+                            <div class="ph">
+                               <p class="m0 text-muted">
+                                  <em class="icon-doc mr fa-lg"></em>3500</p>
+                            </div>
+                         </td>
+                         <td class="wd-sm">
+                            <div class="ph">
+                               <progressbar value="80" type="success" class="m0 progress-xs">80%</progressbar>
+                            </div>
+                         </td>
+                      </tr>
+                   </tbody>
+                </table>
+               </a>
+            </div>
+          <% end %>        
+        <% end %>
+        
+        
         <!-- END multiple list group -->
         
      </div>
