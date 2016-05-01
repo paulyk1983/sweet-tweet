@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
       config.access_token        = oauth_token
       config.access_token_secret = oauth_secret
     end
-
-    client.user_timeline(client.user.screen_name)
+    options = {count: 50, include_rts: true}
+    client.user_timeline(client.user.screen_name, options)
   end
 end

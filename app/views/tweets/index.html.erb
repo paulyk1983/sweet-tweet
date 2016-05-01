@@ -1,50 +1,50 @@
-<div class="content-wrapper">
-<h2>My Tweets</h2>
-  <div class="list-group">
-    <a href="#" class="list-group-item">
-      <table class="wd-wide">
-        <tbody>
-          <tr>                    
-            <td class="wd-xs">
-              <div class="ph">
-                <p class="m0">Image</p>
-              </div>
-            </td>
-            <td>
-              <div class="ph">
-                 <p class="m0">Text</p>
-              </div>
-            </td>
-            <td class="wd-sm hidden-xs hidden-sm">
-              <div class="ph">
-                 <p class="m0">Date</p>
-              </div>
-            </td>
-            <td class="wd-xs hidden-xs hidden-sm">
-              <div class="ph">
-                 <p class="m0">
-                    <em class="icon-users mr fa-lg"></em>Retweets</p>
-              </div>
-            </td>
-            <td class="wd-xs hidden-xs hidden-sm">
-              <div class="ph">
-                 <p class="m0">Favorites</p>
-              </div>
-            </td>
-            <td class="wd-sm">
-              <div class="ph">
-                 <progressbar value="80" type="success" class="m0 progress-xs">Rank</progressbar>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </a>
-  </div>
 
-<div ng-app="app">
+    
+<div ng-app="app" class="content-wrapper">
   <div ng-controller="tweetsCtrl" ng-init="setup()">
-    <div class="list-group" ng-repeat="tweet in tweets">            
+    <h2>My Tweets</h2>
+    <div class="list-group">
+      <a href="#" class="list-group-item">
+        <table class="wd-wide">
+          <tbody>
+            <tr>                    
+              <td class="wd-xs">
+                <div class="ph">
+                  <p class="m0">Image</p>
+                </div>
+              </td>
+              <td>
+                <div class="ph">
+                   <p class="m0" ng-click="changeOrderAttribute('text')">Text</p>
+                </div>
+              </td>
+              <td class="wd-sm hidden-xs hidden-sm">
+                <div class="ph">
+                   <p class="m0">Date</p>
+                </div>
+              </td>
+              <td class="wd-xs hidden-xs hidden-sm">
+                <div class="ph">
+                   <p class="m0">
+                      <em class="icon-users mr fa-lg"></em>Retweets</p>
+                </div>
+              </td>
+              <td class="wd-xs hidden-xs hidden-sm">
+                <div class="ph">
+                   <p class="m0">Favorites</p>
+                </div>
+              </td>
+              <td class="wd-sm">
+                <div class="ph">
+                   <progressbar value="80" type="success" class="m0 progress-xs">Rank</progressbar>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </a>
+    </div>
+    <div class="list-group" ng-repeat="tweet in tweets | orderBy:orderAttribute:orderDescending">            
       <a href="#" class="list-group-item">
         <table class="wd-wide">
           <tbody>
@@ -86,6 +86,5 @@
         </table>
       </a>
     </div>
-  </div>
-</div>  
+  </div>  
 </div>
