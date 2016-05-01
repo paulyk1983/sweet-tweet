@@ -6,7 +6,7 @@
   angular.module("app").controller("tweetsCtrl", function($scope, $http) {
 
     $scope.setup = function() {
-      $http.get('/api/v1/employees.json').then(function(response) {
+      $http.get('/api/v1/tweets.json').then(function(response) {
         $scope.tweets = response.data;
       });
     };
