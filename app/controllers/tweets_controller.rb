@@ -1,15 +1,14 @@
 class TweetsController < ApplicationController
   def index
-    @timeline = current_user.user_tweets
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(text: "Number of Retweets Per Month")
-      f.xAxis(categories: ["United States", "Japan", "China", "Germany", "France"])
-      f.series(name: "GDP in Billions", yAxis: 0, data: [14119, 5068, 4985, 3339, 2656])
-      f.series(name: "Population in Millions", yAxis: 1, data: [310, 127, 1340, 81, 65])
+      f.title(text: "Monthly Tweet Performance")
+      f.xAxis(categories: ["Jan", "Feb", "March", "April", "June"])
+      f.series(name: "Retweets", yAxis: 0, data: current_user.retweet_chart)
+      f.series(name: "Likes", yAxis: 1, data: [4, 14, 30, 44, 20])
 
       f.yAxis [
-        {title: {text: "GDP in Billions", margin: 70} },
-        {title: {text: "Population in Millions"}, opposite: true}
+        {title: {text: "", margin: 70} },
+        {title: {text: ""}, opposite: true}
       ]
 
       f.legend(align: 'right', verticalAlign: 'top', y: 75, x: -50, layout: 'vertical')

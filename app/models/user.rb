@@ -31,4 +31,14 @@ class User < ActiveRecord::Base
     options = {count: 50, include_rts: true}
     client.user_timeline(client.user.screen_name, options)
   end
+
+  def retweet_chart
+    jan = 5
+    feb = 10
+    mar = 6
+    apr = 18
+    may = 3
+    [jan, feb, mar, apr, may]
+  end
+
 end
