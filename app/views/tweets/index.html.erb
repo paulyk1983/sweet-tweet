@@ -2,6 +2,9 @@
     
 <div ng-app="app" class="content-wrapper">
   <div ng-controller="tweetsCtrl" ng-init="setup()">
+   
+
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     <h2>My Tweets</h2>
     <div class="list-group">
       <a href="#" class="list-group-item">
@@ -20,18 +23,17 @@
               </td>
               <td class="wd-sm hidden-xs hidden-sm">
                 <div class="ph">
-                   <p class="m0">Date</p>
+                   <p class="m0" ng-click="changeOrderAttribute('created_on')">Date</p>
                 </div>
               </td>
               <td class="wd-xs hidden-xs hidden-sm">
                 <div class="ph">
-                   <p class="m0">
-                      <em class="icon-users mr fa-lg"></em>Retweets</p>
+                   <p class="m0" ng-click="changeOrderAttribute('retweet_count')">Retweets</p>
                 </div>
               </td>
               <td class="wd-xs hidden-xs hidden-sm">
                 <div class="ph">
-                   <p class="m0">Favorites</p>
+                   <p class="m0" ng-click="changeOrderAttribute('favorites_count')">Favorites</p>
                 </div>
               </td>
               <td class="wd-sm">
@@ -44,7 +46,7 @@
         </table>
       </a>
     </div>
-    <div class="list-group" ng-repeat="tweet in tweets | orderBy:orderAttribute:orderDescending">            
+    <div class="list-group" ng-repeat="tweet in tweets | orderBy:orderAttribute:true">            
       <a href="#" class="list-group-item">
         <table class="wd-wide">
           <tbody>
