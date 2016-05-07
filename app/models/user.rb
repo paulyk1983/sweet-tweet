@@ -1,4 +1,4 @@
-require 'rspec'
+
 
 class User < ActiveRecord::Base
   def self.from_omniauth(auth)
@@ -49,20 +49,22 @@ class User < ActiveRecord::Base
     mar = 0
     apr = 0
     may = 0
-    tweets.each do |tweet|
-      retweets += tweet.retweet_count
+    jun = 0
+    tweets.each do |tweet| 
       if tweet.created_at.strftime('%m') == '01'
-        jan += retweets
+        jan += tweet.retweet_count
       elsif tweet.created_at.strftime('%m') == '02'
-        feb += retweets
+        feb += tweet.retweet_count
       elsif tweet.created_at.strftime('%m') == '03'
-        mar += retweets
+        mar += tweet.retweet_count
       elsif tweet.created_at.strftime('%m') == '04'
-        apr += retweets
+        apr += tweet.retweet_count
       elsif tweet.created_at.strftime('%m') == '05'
-        may += retweets
+        may += tweet.retweet_count
+      elsif tweet.created_at.strftime('%m') == '06'
+        jun += tweet.retweet_count
       end
     end  
-    [jan, feb, mar, apr, may]
+    [jan, feb, mar, apr, may, jun]
   end
 end
