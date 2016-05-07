@@ -1,3 +1,5 @@
+require 'rspec'
+
 class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
@@ -33,12 +35,35 @@ class User < ActiveRecord::Base
   end
 
   def retweet_chart
-    jan = 5
-    feb = 10
-    mar = 6
-    apr = 18
-    may = 3
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = Rails.application.config.twitter_key
+      config.consumer_secret     = Rails.application.config.twitter_secret
+      config.access_token        = oauth_token
+      config.access_token_secret = oauth_secret
+    end
+    options = {count: 200, include_rts: true}
+    tweets = client.user_timeline(client.user.screen_name, options)
+    retweets = 0
+    jan = 0
+    feb = 0
+    mar = 0
+    apr = 0
+    may = 0
+    tweets.each do |tweet|
+      retweets += tweet.retweet_count
+      if tweet.created_at.strftime('%m') == '01'
+        jan += retweets
+      elsif tweet.created_at.strftime('%m') == '02'
+        feb += retweets
+      elsif tweet.created_at.strftime('%m') == '03'
+        mar += retweets
+      elsif tweet.created_at.strftime('%m') == '04'
+        apr += retweets
+      elsif tweet.created_at.strftime('%m') == '05'
+        may += retweets
+      end
+    end  
     [jan, feb, mar, apr, may]
   end
-
 end
+
