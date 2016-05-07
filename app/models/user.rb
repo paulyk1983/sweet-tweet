@@ -55,32 +55,32 @@ class User < ActiveRecord::Base
     options = {count: 200, include_rts: true}
     tweets = client.user_timeline(client.user.screen_name, options)
     retweets = 0
-    jan = 0
-    feb = 0
-    mar = 0
-    apr = 0
-    may = 0
-    jun = 0
+    month1 = 0
+    month2 = 0
+    month3 = 0
+    month4 = 0
+    month5 = 0
+    month6 = 0
     tweets.each do |tweet| 
-      if tweet.created_at.strftime('%m') == '01'
-        jan += tweet.retweet_count
-      elsif tweet.created_at.strftime('%m') == '02'
-        feb += tweet.retweet_count
-      elsif tweet.created_at.strftime('%m') == '03'
-        mar += tweet.retweet_count
-      elsif tweet.created_at.strftime('%m') == '04'
-        apr += tweet.retweet_count
-      elsif tweet.created_at.strftime('%m') == '05'
-        may += tweet.retweet_count
-      elsif tweet.created_at.strftime('%m') == '06'
-        jun += tweet.retweet_count
+      if tweet.created_at.strftime('%b') == past_six_months[0]
+        month1 += tweet.retweet_count
+      elsif tweet.created_at.strftime('%b') == past_six_months[1]
+        month2 += tweet.retweet_count
+      elsif tweet.created_at.strftime('%b') == past_six_months[2]
+        month3 += tweet.retweet_count
+      elsif tweet.created_at.strftime('%b') == past_six_months[3]
+        month4 += tweet.retweet_count
+      elsif tweet.created_at.strftime('%b') == past_six_months[4]
+        month5 += tweet.retweet_count
+      elsif tweet.created_at.strftime('%b') == past_six_months[5]
+        month6 += tweet.retweet_count
       end
     end  
-    [jan, feb, mar, apr, may, jun]
+    [month1, month2, month3, month4, month5, month6]
   end
 
   def test
-    (Date.today - 6.month).strftime('%b').to_s
+    past_six_months
   end
     
 end
