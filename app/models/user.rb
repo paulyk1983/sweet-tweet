@@ -66,4 +66,3 @@ class User < ActiveRecord::Base
     [jan, feb, mar, apr, may]
   end
 end
-
