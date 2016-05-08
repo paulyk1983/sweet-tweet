@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def url_shortener_key
+    Rails.application.config.shortener_key
+  end
+
   def tweet(tweet)
     client.update(tweet)
   end
