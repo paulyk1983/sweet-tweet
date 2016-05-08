@@ -92,6 +92,12 @@ class User < ActiveRecord::Base
     months.values
   end
 
+  def self.submit_url
+    Unirest.post("https://www.googleapis.com/urlshortener/v1/url?key=#{ENV['API_BASE_URL']}",
+      headers: { "Accept" => "application/json" },
+      parameters: {'longUrl' => 'http://finishlinecorp.com'}
+    ).body
+  end
  
   
 end
