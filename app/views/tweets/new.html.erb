@@ -1,6 +1,23 @@
-<p>
-  <%= form_for :tweet, url: tweets_path, method: :post do |f| %>
-    <%= f.text_field :message %>
-    <%= f.submit "Send Tweet" %>
-  <% end %>
-</p>
+<div class='row'>
+  <div class='col-xs-12'>
+    <div class='url-input'>
+      <h4>Click on a url to auto-compose a tweet or enter a url below</h4>
+      <input type='text'>
+      <button class='btn btn-large btn-info'>Submit URL</button>
+    </div>
+  <hr>
+  </div>
+</div>
+<div class='row'>
+  <div class='pending-pages col-md-4'>
+    <h2>Pending Pages:</h2>
+    <hr>
+  </div>
+  <div class='composer col-xs-12 col-md-4'>
+    <h2>Tweet Composer</h2>
+    <%= form_for :tweet, url: tweets_path, method: :post do |f| %>
+      <%= f.text_area :message %>
+      <%= f.submit "Send Tweet", class: 'btn btn-large btn-success' %>
+    <% end %>
+  </div>
+</div>

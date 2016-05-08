@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   get '/tweets' => 'tweets#index'
   get '/dashboard' => 'dashboard#show'
-  get '/tweet-composer' => 'composer#show'
  
   root to: 'home#show'
 

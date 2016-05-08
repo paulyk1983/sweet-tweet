@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   end
 
   def test
-    
+    1
   end
   
 end
