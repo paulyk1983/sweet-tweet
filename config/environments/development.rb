@@ -42,4 +42,6 @@ Rails.application.configure do
   # For twitter
   config.twitter_key = "5hhH66UKQecD1rRv9Lr6D1g5d"
   config.twitter_secret = "CxCZ3vw8DE3zyYIsda0thGRiQzR3cQD5hPGH1WYUmn4SFunVlt"
+
+
 end

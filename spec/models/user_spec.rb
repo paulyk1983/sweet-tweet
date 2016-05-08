@@ -19,4 +19,13 @@ RSpec.describe User, type: :model do
       expect(result).to eq('https://finishlinecorp.com/ties2elastic/let-your-product-tags-have-a-ball')
     end
   end 
+
+  describe 'test' do
+    it 'should return a shortened link
+    if given a url' do
+      output = User.new
+      result = output.test('https://finishlinecorp.com/ties2elastic/let-your-product-tags-have-a-ball')
+      expect(result).to eq(Shortener::ShortenedUrl.generate("https://finishlinecorp.com/ties2elastic/let-your-product-tags-have-a-ball"))
+    end
+  end 
 end

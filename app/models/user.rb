@@ -92,8 +92,6 @@ class User < ActiveRecord::Base
     months.values
   end
 
-  def test(input)
-    input
-  end
+ 
   
 end
