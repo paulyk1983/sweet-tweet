@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   def index
-    @date = current_user.test
+    @test = current_user.test
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "Monthly Tweet Performance")
       f.xAxis(categories: current_user.past_six_months)
