@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   get '/tweets' => 'tweets#index'
   get '/dashboard' => 'dashboard#show'
+  get '/:id' => "shortener/shortened_urls#show"
  
   root to: 'home#show'
 
