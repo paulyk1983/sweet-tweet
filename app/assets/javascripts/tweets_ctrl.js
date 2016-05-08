@@ -16,17 +16,7 @@
     };
 
     $scope.submitUrl = function() {
-      $http.post(
-        "https://www.googleapis.com/urlshortener/v1/url?key=#{ENV['SHORTENER_KEY']}",
-        {"longUrl": "https://finishlinecorp.com"}
-      ).then(function(response) {
-        console.log(response);
-      }, function(error) {
-        $scope.errors = error.data.errors;
-      });
     };
-    
-"/employees/"
     
     window.$scope = $scope;
   });

@@ -32,6 +32,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'unirest'
+
 # For tweeting!
 gem 'twitter', '~> 5.3.1'
 gem 'omniauth-twitter', '~> 1.0.1'
