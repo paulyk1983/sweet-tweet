@@ -17,7 +17,7 @@
 
     $scope.submitUrl = function() {
       $http.post(
-        "https://www.googleapis.com/urlshortener/v1/url?key=" + shortener_key,
+        "https://www.googleapis.com/urlshortener/v1/url?key=#{ENV['SHORTENER_KEY']}",
         {"longUrl": "https://finishlinecorp.com"}
       ).then(function(response) {
         console.log(response);
@@ -26,7 +26,7 @@
       });
     };
     
-
+"/employees/"
     
     window.$scope = $scope;
   });
