@@ -94,7 +94,8 @@ class User < ActiveRecord::Base
   end
 
   def submit_url(url)
-    page = MetaInspector.new(url)
+    MetaInspector.new(url)
+
    # Unirest.post("https://www.googleapis.com/urlshortener/v1/url?key=#{ENV['API_BASE_URL']}",
    #   headers: { "Accept" => "application/json" },
    #   parameters: {'longUrl' => 'http://finishlinecorp.com'}
