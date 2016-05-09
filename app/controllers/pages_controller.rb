@@ -11,10 +11,14 @@ class PagesController < ApplicationController
       parameters: {"longUrl" => "https://www.google.com"}
     ).body
     url = params["long_url"]
-    @page = current_user.submit_url(url)
+    
     render 'index.html.erb'
   end
 
   def create
+    @page = current_user.submit_url(url)
+    Pages.create(
+      long_url: params[:long_url]
+    )
   end
 end

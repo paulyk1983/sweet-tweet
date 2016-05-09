@@ -37,6 +37,7 @@ class TweetsController < ApplicationController
   end
 
   def new
+    @url = Page.first.long_url
   end
 
   def create
