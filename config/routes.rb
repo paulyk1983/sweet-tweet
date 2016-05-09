@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   get 'dashboard/show'
+  get '/pages' => 'pages#index'
 
   namespace :api do
     namespace :v1 do
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   get '/tweets' => 'tweets#index'
   get '/dashboard' => 'dashboard#show'
   get '/:id' => "shortener/shortened_urls#show"
-  get '/pages' => 'pages#index'
+  
  
   root to: 'home#show'
 

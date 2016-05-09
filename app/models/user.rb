@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
       config.consumer_secret     = Rails.application.config.twitter_secret
       config.access_token        = oauth_token
       config.access_token_secret = oauth_secret
+      
     end
   end
 

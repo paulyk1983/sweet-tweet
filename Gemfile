@@ -32,7 +32,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# api requests
 gem 'unirest'
+
+# scraping pages
+gem 'metainspector', '~> 5.2'
 
 # For tweeting!
 gem 'twitter', '~> 5.3.1'
