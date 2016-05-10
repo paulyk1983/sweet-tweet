@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get '/pages' => 'pages#new'
   post '/pages' => 'pages#create'
 
-
   get '/tweets' => 'tweets#index'
 
   namespace :api do

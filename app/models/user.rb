@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
       config.consumer_secret     = Rails.application.config.twitter_secret
       config.access_token        = oauth_token
       config.access_token_secret = oauth_secret
-
     end
   end
 
@@ -95,11 +94,15 @@ class User < ActiveRecord::Base
 
   def submit_url(url)
     MetaInspector.new(url)
-
-   # Unirest.post("https://www.googleapis.com/urlshortener/v1/url?key=#{ENV['API_BASE_URL']}",
-   #   headers: { "Accept" => "application/json" },
-   #   parameters: {'longUrl' => 'http://finishlinecorp.com'}
-   # ).body
+    data = Unirest.post(
+      "https://www.googleapis.com/urlshortener/v1/url?key={ENV['API_BASE_URL']}",
+      headers: { "Content-Type" => "application/json" },
+      parameters: {'longUrl' => 'http://finishlinecorp.com'}.to_json
+    ).body
+    puts '*' * 50
+    puts data
+    puts '*' * 50
+    @short_url = body["id"]
   end
  
   

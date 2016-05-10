@@ -33,10 +33,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 # api requests
-gem 'unirest'
+gem 'unirest', '~> 1.1.2'
 
 # scraping pages
-gem 'metainspector', '~> 5.2'
+gem 'metainspector', '~> 4.7.2'
 
 # For tweeting!
 gem 'twitter', '~> 5.3.1'
