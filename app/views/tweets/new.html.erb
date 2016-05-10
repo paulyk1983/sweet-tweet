@@ -2,7 +2,7 @@
   <div class='composer col-xs-12 col-md-4'>
     <h2>Tweet Composer</h2>
     <%= form_for :tweet, url: tweets_path, method: :post do |f| %>
-      <%= f.text_area :message, :value => @url %>
+      <%= f.text_area :message, :value => @message %>
       <%= f.submit "Send Tweet", class: 'btn btn-large btn-success' %>
     <% end %>
   </div>

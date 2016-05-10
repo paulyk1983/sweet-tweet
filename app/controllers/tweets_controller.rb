@@ -37,7 +37,8 @@ class TweetsController < ApplicationController
   end
 
   def new
-    @url = Page.last.short_url
+    page = Page.last
+    @message = page.title + ' ' + page.short_url
   end
 
   def create

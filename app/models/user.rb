@@ -92,18 +92,9 @@ class User < ActiveRecord::Base
     months.values
   end
 
-  def submit_url(url)
-    MetaInspector.new(url)
-    data = Unirest.post(
-      "https://www.googleapis.com/urlshortener/v1/url?key={ENV['API_BASE_URL']}",
-      headers: { "Content-Type" => "application/json" },
-      parameters: {'longUrl' => 'http://finishlinecorp.com'}.to_json
-    ).body
-    puts '*' * 50
-    puts data
-    puts '*' * 50
-    @short_url = body["id"]
+  def test
+    page = MetaInspector.new('https://finishlinecorp.com/ties2elastic/let-your-product-tags-have-a-ball')
+    return page.images.best
   end
  
-  
 end
