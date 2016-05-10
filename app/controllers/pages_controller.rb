@@ -19,10 +19,12 @@ class PagesController < ApplicationController
     short_url = data["id"]
     page = MetaInspector.new(params[:long_url])
     title = page.title
+    image = page.images.best
     Page.create(
       long_url: params[:long_url],
       short_url: short_url,
-      title: title
+      title: title,
+      image: image
     )
     redirect_to '/tweets/new'
   end
