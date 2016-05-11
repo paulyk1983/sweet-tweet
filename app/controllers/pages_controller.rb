@@ -1,4 +1,5 @@
 require 'unirest'
+require 'open-uri'
 
 class PagesController < ApplicationController
   def index
@@ -20,6 +21,12 @@ class PagesController < ApplicationController
     page = MetaInspector.new(params[:long_url])
     title = page.title
     image = page.images.best
+    open(image) { |f|
+      File.open("tweet_image.jpg", "wb") do |file|
+        file.puts f.read
+      end
+    }   
+    
     Page.create(
       long_url: params[:long_url],
       short_url: short_url,

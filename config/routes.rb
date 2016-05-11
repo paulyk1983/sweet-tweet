@@ -12,7 +12,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/tweets' => 'tweets#index'
+      
       get '/pages' => 'pages#index'
+      get '/pages/:id' => 'pages#show'
+      post '/pages' => 'pages#create'
     end
   end
   

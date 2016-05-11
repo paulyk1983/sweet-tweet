@@ -19,8 +19,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def tweet(tweet)
-    client.update_with_media(tweet, File.new('app/assets/images/hero_313x4_3.57066f6292a04.jpg'))
+  def tweet(tweet, image)
+    client.update_with_media(
+      tweet, 
+      open("tweet_image.jpg")
+    )
+    File.delete("tweet_image.jpg")
   end
 
   def user_tweets

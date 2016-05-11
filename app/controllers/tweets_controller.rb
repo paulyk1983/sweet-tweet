@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+  attr_reader :image
+
   def index
    
     @chart = LazyHighCharts::HighChart.new('graph') do |f|
@@ -43,7 +45,7 @@ class TweetsController < ApplicationController
   end
 
   def create
-    current_user.tweet(twitter_params[:message])
+    current_user.tweet(twitter_params[:message], @image)
   end
 
   def twitter_params
