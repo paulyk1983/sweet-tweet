@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   def index
     page = MetaInspector.new('https://finishlinecorp.com')
     @data = page.title
-    @pages = Page.where("user_id = ?", "2")
+    @pages = Page.where("status = ? AND user_id = ?", 'pending', 2)
   end
 
   def new
