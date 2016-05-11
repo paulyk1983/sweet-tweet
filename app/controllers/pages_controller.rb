@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   def index
     page = MetaInspector.new('https://finishlinecorp.com')
     @data = page.title
-    @pages = Page.where("status = ?", "pending")
+    @pages = Page.where("user_id = ?", "2")
   end
 
   def new
@@ -32,7 +32,9 @@ class PagesController < ApplicationController
       long_url: params[:long_url],
       short_url: short_url,
       title: title,
-      image: image
+      image: image,
+      status: 'pending',
+      user_id: current_user.id
     )
     redirect_to '/tweets/new'
   end
