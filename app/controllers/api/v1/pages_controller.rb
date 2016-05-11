@@ -1,6 +1,6 @@
 class Api::V1::PagesController < ApplicationController
   def index
-    @pages = Page.all
+    @pending_pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id)
     render 'index.json.jbuilder'
   end 
 
