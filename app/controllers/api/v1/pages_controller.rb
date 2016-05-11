@@ -10,7 +10,8 @@ class Api::V1::PagesController < ApplicationController
   def create
     if current_user
       @page = Page.new(
-        long_url: params[:url]
+        long_url: params[:url],
+        status: 'pending'
       )
       if @page.save
         # render 'show.json.jbuilder'
