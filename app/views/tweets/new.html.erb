@@ -1,12 +1,15 @@
-<div class='row'>
-  <div class='composer col-xs-12 col-md-4'>
+<div class='row' ng-app="app">
+  <div class='composer col-xs-12 col-md-4' ng-controller="tweetsCtrl">
     <h2>Tweet Composer</h2>
     <%= form_for :tweet, url: "/tweets?page_id=#{@page.id}", method: :post do |f| %>
-      <%= f.text_area :message, :value => @message %>
-      <%= f.submit "Send Tweet", class: 'btn btn-large btn-success' %>
+      <%= f.text_area :message, :value => @message, "ng-init" => "message='#{@message}'; addCount();", "ng-model" => "message", "ng-change" => "addCount()"  %>
+      <div>
+        <%= f.submit "Send Tweet", class: 'btn btn-large btn-success send-tweet' %>
+        <div>Characters Left: <span id='word-count'>{{wordCount}}</span></div>
+      </div>  
     <% end %>
   </div>
-  <div class='tweet-img col-xs-12 col-md-6'>
+  <div class='tweet-img col-xs-12 col-md-4'>
     <img src="<%= @image %>">
     <button align='center' class='btn btn-large btn-danger'>Add Image</button>
   </div>
