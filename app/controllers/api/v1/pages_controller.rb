@@ -4,9 +4,6 @@ class Api::V1::PagesController < ApplicationController
     render 'index.json.jbuilder'
   end 
 
-  def show
-  end
-
   def create
     if current_user
       @page = Page.new(
@@ -24,4 +21,7 @@ class Api::V1::PagesController < ApplicationController
       redirect_to '/'
     end  
   end 
+
+  def show
+  end
 end

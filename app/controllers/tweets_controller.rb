@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  attr_reader :image
+  attr_accessor :image, :page
 
   def index
    
@@ -39,12 +39,14 @@ class TweetsController < ApplicationController
   end
 
   def new
-    page = Page.last
+    @page = Page.find_by(id: params[:id])
     @message = page.title + ' ' + page.short_url
     @image = page.image
   end
 
   def create
+    @page = Page.find_by(id: params[:page_id])
+    @page.update(status: 'sent')
     current_user.tweet(twitter_params[:message], @image)
   end
 

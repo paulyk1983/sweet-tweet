@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/pages' => 'pages#index'
   get '/pages' => 'pages#new'
   post '/pages' => 'pages#create'
+  patch '/pages' => 'pages#update'
 
   get '/tweets' => 'tweets#index'
 

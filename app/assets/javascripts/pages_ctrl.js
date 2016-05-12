@@ -7,9 +7,15 @@
 
     $scope.setup = function() {
       $http.get('/api/v1/pages.json').then(function(response) {
-        $scope.pages = response.data;
+        var divPages = document.getElementById('pages');
+        console.log(response);
+        divPages.innerHTML(response);
       });
     };
+
+    $scope.submitUrl = function() {
+    };
+
     
     window.$scope = $scope;
   });
