@@ -40,3 +40,18 @@
   float: left;
   margin-right: 15px;
 }
+
+.added-image {
+  position: relative;
+  bottom:43px;
+  left: 1px;
+}
+
+.added-image img {
+  height: 19px;
+  opacity: 0.5;
+}
+
+.hidden {
+  display:none;
+}
