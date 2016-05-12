@@ -29,7 +29,7 @@
 }
 
 .tweet-img {
-  margin-top:50px;
+  margin-top:10px;
 }
 
 .tweet-img img {
@@ -43,15 +43,16 @@
 
 .added-image {
   position: relative;
-  bottom:43px;
-  left: 1px;
+  display: inline;
+  bottom: 21px;
+  right: 302px;
 }
 
 .added-image img {
   height: 19px;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
-.hidden {
-  display:none;
+#image-preview {
+  margin-bottom:20px;
 }

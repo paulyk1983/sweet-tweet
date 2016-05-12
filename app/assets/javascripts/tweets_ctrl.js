@@ -18,10 +18,11 @@
 
     $scope.addCount = function() {
       $scope.wordCount = 140 - $scope.message.length;
+      var wordCountSpan = document.getElementById("word-count");
       if ($scope.wordCount < 0) {
-        document.getElementById("word-count").style["color"] = 'red';
+        wordCountSpan.style["color"] = 'red';
       } else {
-        document.getElementById("word-count").style["color"] = 'green';
+        wordCountSpan.style["color"] = 'green';
       }
     };
 
@@ -41,6 +42,7 @@
     $scope.addImage = function() {
       document.getElementById('image-input').value = 'true';
       $scope.wordCount = $scope.wordCount - 24;
+
       var addImageButton = document.getElementById('add-image');
       addImageButton.className += " hidden";
 
@@ -48,10 +50,20 @@
       removeImageButton.className = removeImageButton.className.replace( ' hidden', '' );
 
       var image = document.getElementById('image');
-      image.className += "hidden";
-
-      var imageThumb = document.getElementById('image-thumb');
-      imageThumb.className = imageThumb.className.replace( 'hidden', '' );
+      if (image.className === "animated fadeIn") {
+        image.className = image.className.replace( 'animated fadeIn', 'animated zoomOutLeft' );
+      } else {
+        image.className += "animated zoomOutLeft";
+      }
+      setTimeout(function() {
+        var imageThumb = document.getElementById('image-thumb');
+        if (imageThumb.className === 'animated rollOut') {
+          imageThumb.className = imageThumb.className.replace( 'animated rollOut', '' );
+        } else {
+          imageThumb.className = imageThumb.className.replace( 'hidden', '' );
+        }
+      }, 850);
+      
     };
 
     $scope.removeImage = function() {
@@ -64,10 +76,13 @@
       addImageButton.className = removeImageButton.className.replace( ' hidden', '' );
 
       var imageThumb = document.getElementById('image-thumb');
-      imageThumb.className += "hidden";
+      imageThumb.className += "animated rollOut";
 
-      var image = document.getElementById('image');
-      image.className = image.className.replace( 'hidden', '' );
+      setTimeout(function() {
+        var image = document.getElementById('image');
+        image.className = image.className.replace( 'animated zoomOutLeft', 'animated fadeIn' );
+      }, 700);
+      
     };
 
     
