@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get '/tweets' => 'tweets#index'
+
+      get '/mentions' => 'mentions#index'
       
       get '/pages' => 'pages#index'
       get '/pages/:id' => 'pages#show'

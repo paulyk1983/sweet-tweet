@@ -38,6 +38,10 @@ class User < ActiveRecord::Base
     client.user_timeline(client.user.screen_name, options)
   end
 
+  def user_mentions
+    client.mentions_timeline
+  end
+
   def past_six_months
     months = []
     6.times do |i|
