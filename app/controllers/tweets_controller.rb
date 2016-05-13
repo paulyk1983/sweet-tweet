@@ -39,14 +39,24 @@ class TweetsController < ApplicationController
   end
 
   def new
-    @page = Page.find_by(id: params[:id])
-    @message = page.title + ' ' + page.short_url
-    @image = page.image
+    page = Page.find_by(id: params[:id])
+    if page
+      @message = page.title + ' ' + page.short_url
+      @image = page.image
+      @page_id = page.id 
+    else
+      @message = ''
+      @image = ''
+      @page_id = 0
+    end
+    
   end
 
   def create
-    @page = Page.find_by(id: params[:page_id])
-    @page.update(status: 'sent')
+    page = Page.find_by(id: params[:page_id])
+    if page
+      page.update(status: 'sent')
+    end 
     current_user.tweet(twitter_params[:message], @image)
   end
 

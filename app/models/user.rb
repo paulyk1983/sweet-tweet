@@ -22,11 +22,15 @@ class User < ActiveRecord::Base
   end
 
   def tweet(tweet, image)
-    client.update_with_media(
-      tweet, 
-      open("tweet_image.jpg")
-    )
-    File.delete("tweet_image.jpg")
+    if image
+      client.update_with_media(
+        tweet, 
+        open("tweet_image.jpg")
+      )
+      File.delete("tweet_image.jpg")
+    else
+      client.update(tweet)
+    end
   end
 
   def user_tweets
