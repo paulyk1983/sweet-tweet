@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
+  get '/' => 'dashboard#show'
+
   get 'dashboard/show'
   get '/dashboard' => 'dashboard#show'
 
