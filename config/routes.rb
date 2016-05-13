@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   patch '/pages' => 'pages#update'
 
   get '/tweets' => 'tweets#index'
+  get '/charts' => 'charts#show'
 
   namespace :api do
     namespace :v1 do
