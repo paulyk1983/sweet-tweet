@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
   def user_tweets
     options = {count: 50, include_rts: true}
-    client.user_timeline(client.user.screen_name, options)
+    client.user_timeline(current_user.twitter_handle, options)
   end
 
   def user_mentions

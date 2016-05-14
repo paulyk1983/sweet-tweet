@@ -2,7 +2,7 @@ class ChartsController < ApplicationController
   def show
     options = {count: 200, include_rts: true}
     keys = current_user.client
-    tweets = keys.user_timeline(keys.user.screen_name, options)
+    tweets = keys.user_timeline(current_user.twitter_handle, options)
     mentions = keys.mentions_timeline(options)
     @chart1 = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "Tweet Performance - Last 6 Months")
