@@ -58,10 +58,10 @@ class User < ActiveRecord::Base
     months.reverse!
   end
 
-  def chart(time_frame, event_type, events)  
+  def chart(number_of_months, event_type, events)  
     months = {}
-    6.times do |i|
-      if time_frame == 6
+    number_of_months.times do |i|
+      if number_of_months == 6
         months[past_six_months[i]] = 0
       else
         months[past_year[i]] = 0
@@ -69,11 +69,8 @@ class User < ActiveRecord::Base
     end
 
     day_of_month = Time.zone.today.strftime('%e').to_i
-    if time_frame == 6
-      time_frame = 5
-    end
-    chart_start_date = Time.zone.today - time_frame.month - day_of_month
-    
+    chart_start_date = Time.zone.today - (number_of_months - 1).month - day_of_month
+       
     events.each do |event| 
       if event.created_at > chart_start_date
         event_month = event.created_at.strftime('%b')
@@ -92,7 +89,7 @@ class User < ActiveRecord::Base
     months.values
   end
 
-  # def retweet_chart(time_frame)
+  # def retweet_chart(number_of_months)
   #   options = {count: 200, include_rts: true}
   #   tweets = client.user_timeline(client.user.screen_name, options)
 
@@ -233,8 +230,7 @@ class User < ActiveRecord::Base
   # end
 
   def test
-    page = MetaInspector.new('https://finishlinecorp.com/ties2elastic/let-your-product-tags-have-a-ball')
-    return page.images.best
+    Time.zone.today.strftime('%e').to_i
   end
  
 end

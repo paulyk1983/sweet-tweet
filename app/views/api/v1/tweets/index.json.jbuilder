@@ -4,4 +4,5 @@ json.array! @tweets.each do |tweet|
   json.retweet_count tweet.retweet_count
   json.favorites_count tweet.favorites_count
   json.media tweet.media
+  json.id tweet.id
 end
