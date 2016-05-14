@@ -58,72 +58,14 @@ class User < ActiveRecord::Base
     months.reverse!
   end
 
-  def retweet_chart(time_frame)
+  def chart(time_frame, event_type)
     options = {count: 200, include_rts: true}
-    tweets = client.user_timeline(client.user.screen_name, options)
-
-    months = {}
-    time_frame.times do |i|
-      if time_frame == 6
-        months[past_six_months[i]] = 0
-      else
-        months[past_year[i]] = 0
-      end  
+    if event_type == 'mentions'
+      events = client.mentions_timeline(options)
+    else
+      events = client.user_timeline(client.user.screen_name, options)
     end
-
-    day_of_month = Time.zone.today.strftime('%e').to_i
-    if time_frame == 6
-      time_frame = 5
-    end
-    chart_start_date = Time.zone.today - time_frame.month - day_of_month
     
-    tweets.each do |tweet| 
-      if tweet.created_at > chart_start_date
-        count = tweet.retweet_count
-        tweet_month = tweet.created_at.strftime('%b')
-        old_total = months[tweet_month]
-        new_total = count + old_total
-        months[tweet_month] = new_total
-      end
-    end  
-    months.values
-  end
-
-  def favorites_chart(time_frame)
-    options = {count: 200, include_rts: true}
-    tweets = client.user_timeline(client.user.screen_name, options)
-
-    months = {}
-    time_frame.times do |i|
-      if time_frame == 6
-        months[past_six_months[i]] = 0
-      else
-        months[past_year[i]] = 0
-      end
-    end
-
-    day_of_month = Time.zone.today.strftime('%e').to_i
-    if time_frame == 6
-      time_frame = 5
-    end
-    chart_start_date = Time.zone.today - time_frame.month - day_of_month
-    
-    tweets.each do |tweet| 
-      if tweet.created_at > chart_start_date
-        count = tweet.favorites_count
-        tweet_month = tweet.created_at.strftime('%b')
-        old_total = months[tweet_month]
-        new_total = count + old_total
-        months[tweet_month] = new_total
-      end
-    end  
-    months.values
-  end
-
-  def mentions_chart(time_frame)
-    options = {count: 200, include_rts: true}
-    mentions = client.mentions_timeline(options)
-
     months = {}
     6.times do |i|
       if time_frame == 6
@@ -139,16 +81,115 @@ class User < ActiveRecord::Base
     end
     chart_start_date = Time.zone.today - time_frame.month - day_of_month
     
-    mentions.each do |mention| 
-      if mention.created_at > chart_start_date
-        mention_month = mention.created_at.strftime('%b')
-        old_total = months[mention_month]
-        new_total = old_total + 1
-        months[mention_month] = new_total
+    events.each do |event| 
+      if event.created_at > chart_start_date
+        event_month = event.created_at.strftime('%b')
+        if event_type == 'retweets'
+          count = event.retweet_count           
+        elsif event_type == 'favorites'
+          count = event.favorites_count   
+        else
+          count = 1
+        end
+        old_total = months[event_month]
+        new_total = count + old_total
+        months[event_month] = new_total
       end
     end  
     months.values
   end
+
+   # def retweet_chart(time_frame)
+  #   options = {count: 200, include_rts: true}
+  #   tweets = client.user_timeline(client.user.screen_name, options)
+
+  #   months = {}
+  #   time_frame.times do |i|
+  #     if time_frame == 6
+  #       months[past_six_months[i]] = 0
+  #     else
+  #       months[past_year[i]] = 0
+  #     end  
+  #   end
+
+  #   day_of_month = Time.zone.today.strftime('%e').to_i
+  #   if time_frame == 6
+  #     time_frame = 5
+  #   end
+  #   chart_start_date = Time.zone.today - time_frame.month - day_of_month
+    
+  #   tweets.each do |tweet| 
+  #     if tweet.created_at > chart_start_date
+  #       tweet_month = tweet.created_at.strftime('%b')
+  #       count = tweet.retweet_count        
+  #       old_total = months[tweet_month]
+  #       new_total = count + old_total
+  #       months[tweet_month] = new_total
+  #     end
+  #   end  
+  #   months.values
+  # end
+
+  # def favorites_chart(time_frame)
+  #   options = {count: 200, include_rts: true}
+  #   tweets = client.user_timeline(client.user.screen_name, options)
+
+  #   months = {}
+  #   time_frame.times do |i|
+  #     if time_frame == 6
+  #       months[past_six_months[i]] = 0
+  #     else
+  #       months[past_year[i]] = 0
+  #     end
+  #   end
+
+  #   day_of_month = Time.zone.today.strftime('%e').to_i
+  #   if time_frame == 6
+  #     time_frame = 5
+  #   end
+  #   chart_start_date = Time.zone.today - time_frame.month - day_of_month
+    
+  #   tweets.each do |tweet| 
+  #     if tweet.created_at > chart_start_date        
+  #       tweet_month = tweet.created_at.strftime('%b')
+  #       count = tweet.favorites_count
+  #       old_total = months[tweet_month]
+  #       new_total = count + old_total
+  #       months[tweet_month] = new_total
+  #     end
+  #   end  
+  #   months.values
+  # end
+
+  # def mentions_chart(time_frame)
+  #   options = {count: 200, include_rts: true}
+  #   mentions = client.mentions_timeline(options)
+
+  #   months = {}
+  #   6.times do |i|
+  #     if time_frame == 6
+  #       months[past_six_months[i]] = 0
+  #     else
+  #       months[past_year[i]] = 0
+  #     end
+  #   end
+
+  #   day_of_month = Time.zone.today.strftime('%e').to_i
+  #   if time_frame == 6
+  #     time_frame = 5
+  #   end
+  #   chart_start_date = Time.zone.today - time_frame.month - day_of_month
+    
+  #   mentions.each do |mention| 
+  #     if mention.created_at > chart_start_date
+  #       mention_month = mention.created_at.strftime('%b')
+  #       old_total = months[mention_month]
+  #       new_total = old_total + 1
+  #       months[mention_month] = new_total
+  #     end
+  #   end  
+  #   months.values
+  # end
 
   # def favorites_chart_past_year
   #   options = {count: 200, include_rts: true}
