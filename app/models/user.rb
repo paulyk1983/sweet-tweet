@@ -58,17 +58,24 @@ class User < ActiveRecord::Base
     months.reverse!
   end
 
-  def retweet_chart
+  def retweet_chart(time_frame)
     options = {count: 200, include_rts: true}
     tweets = client.user_timeline(client.user.screen_name, options)
 
     months = {}
-    6.times do |i|
-      months[past_six_months[i]] = 0
+    time_frame.times do |i|
+      if time_frame == 6
+        months[past_six_months[i]] = 0
+      else
+        months[past_year[i]] = 0
+      end  
     end
 
     day_of_month = Time.zone.today.strftime('%e').to_i
-    chart_start_date = Time.zone.today - 5.month - day_of_month
+    if time_frame == 6
+      time_frame = 5
+    end
+    chart_start_date = Time.zone.today - time_frame.month - day_of_month
     
     tweets.each do |tweet| 
       if tweet.created_at > chart_start_date
@@ -82,21 +89,28 @@ class User < ActiveRecord::Base
     months.values
   end
 
-  def retweet_chart_past_year
+  def favorites_chart(time_frame)
     options = {count: 200, include_rts: true}
     tweets = client.user_timeline(client.user.screen_name, options)
 
     months = {}
-    6.times do |i|
-      months[past_year[i]] = 0
+    time_frame.times do |i|
+      if time_frame == 6
+        months[past_six_months[i]] = 0
+      else
+        months[past_year[i]] = 0
+      end
     end
 
     day_of_month = Time.zone.today.strftime('%e').to_i
-    chart_start_date = Time.zone.today - 12.month - day_of_month
+    if time_frame == 6
+      time_frame = 5
+    end
+    chart_start_date = Time.zone.today - time_frame.month - day_of_month
     
     tweets.each do |tweet| 
       if tweet.created_at > chart_start_date
-        count = tweet.retweet_count
+        count = tweet.favorites_count
         tweet_month = tweet.created_at.strftime('%b')
         old_total = months[tweet_month]
         new_total = count + old_total
@@ -105,6 +119,84 @@ class User < ActiveRecord::Base
     end  
     months.values
   end
+
+  def mentions_chart(time_frame)
+    options = {count: 200, include_rts: true}
+    mentions = client.mentions_timeline(options)
+
+    months = {}
+    6.times do |i|
+      if time_frame == 6
+        months[past_six_months[i]] = 0
+      else
+        months[past_year[i]] = 0
+      end
+    end
+
+    day_of_month = Time.zone.today.strftime('%e').to_i
+    if time_frame == 6
+      time_frame = 5
+    end
+    chart_start_date = Time.zone.today - time_frame.month - day_of_month
+    
+    mentions.each do |mention| 
+      if mention.created_at > chart_start_date
+        mention_month = mention.created_at.strftime('%b')
+        old_total = months[mention_month]
+        new_total = old_total + 1
+        months[mention_month] = new_total
+      end
+    end  
+    months.values
+  end
+
+  # def favorites_chart_past_year
+  #   options = {count: 200, include_rts: true}
+  #   tweets = client.user_timeline(client.user.screen_name, options)
+
+  #   months = {}
+  #   12.times do |i|
+  #     months[past_year[i]] = 0
+  #   end
+
+  #   day_of_month = Time.zone.today.strftime('%e').to_i
+  #   chart_start_date = Time.zone.today - 12.month - day_of_month
+    
+  #   tweets.each do |tweet| 
+  #     if tweet.created_at > chart_start_date
+  #       count = tweet.favorites_count
+  #       tweet_month = tweet.created_at.strftime('%b')
+  #       old_total = months[tweet_month]
+  #       new_total = count + old_total
+  #       months[tweet_month] = new_total
+  #     end
+  #   end  
+  #   months.values
+  # end
+
+  # def mentions_chart_past_year
+  #   options = {count: 200, include_rts: true}
+  #   mentions = client.mentions_timeline(options)
+
+  #   months = {}
+  #   12.times do |i|
+  #     months[past_year[i]] = 0
+  #   end
+
+  #   day_of_month = Time.zone.today.strftime('%e').to_i
+  #   chart_start_date = Time.zone.today - 12.month - day_of_month
+    
+  #   mentions.each do |mention| 
+  #     if mention.created_at > chart_start_date
+  #       mention_month = mention.created_at.strftime('%b')
+  #       old_total = months[mention_month]
+  #       new_total = old_total + 1
+  #       months[mention_month] = new_total
+  #     end
+  #   end  
+
+  #   months.values
+  # end
 
   def test
     page = MetaInspector.new('https://finishlinecorp.com/ties2elastic/let-your-product-tags-have-a-ball')
