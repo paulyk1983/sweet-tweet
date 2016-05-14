@@ -1,11 +1,15 @@
 class ChartsController < ApplicationController
   def show
+    options = {count: 200, include_rts: true}
+    keys = current_user.client
+    tweets = keys.user_timeline(keys.user.screen_name, options)
+    mentions = keys.mentions_timeline(options)
     @chart1 = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "Tweet Performance - Last 6 Months")
       f.xAxis(categories: current_user.past_six_months)
-      f.series(name: "Retweets", yAxis: 0, data: current_user.chart(6, 'retweets'))
-      f.series(name: "Favorites", yAxis: 1, data: current_user.chart(6, 'favorites'))
-      f.series(name: "Mentions", yAxis: 1, data: current_user.chart(6, 'mentions'))
+      f.series(name: "Retweets", yAxis: 0, data: current_user.chart(6, 'retweets', tweets))
+      f.series(name: "Favorites", yAxis: 1, data: current_user.chart(6, 'favorites', tweets))
+      f.series(name: "Mentions", yAxis: 1, data: current_user.chart(6, 'mentions', mentions))
 
       f.yAxis [
         {title: {text: "", margin: 70} },
@@ -19,9 +23,9 @@ class ChartsController < ApplicationController
     @chart2 = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "Tweet Performance - Last 12 Months")
       f.xAxis(categories: current_user.past_year)      
-      f.series(name: "Retweets", yAxis: 0, data: [0,0,0,0,0,0,0,0,0,0,0,0])
-      f.series(name: "Favorites", yAxis: 1, data: [0,0,0,0,0,0,0,0,0,0,0,0])
-      f.series(name: "Mentions", yAxis: 1, data: [0,0,0,0,0,0,0,0,0,0,0,0])
+      f.series(name: "Retweets", yAxis: 0, data: current_user.chart(12, 'retweets', tweets))
+      f.series(name: "Favorites", yAxis: 1, data: current_user.chart(12, 'favorites', tweets))
+      f.series(name: "Mentions", yAxis: 1, data: current_user.chart(12, 'mentions', mentions))
 
       f.yAxis [
         {title: {text: "", margin: 70} },

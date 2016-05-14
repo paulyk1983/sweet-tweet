@@ -58,14 +58,7 @@ class User < ActiveRecord::Base
     months.reverse!
   end
 
-  def chart(time_frame, event_type)
-    options = {count: 200, include_rts: true}
-    if event_type == 'mentions'
-      events = client.mentions_timeline(options)
-    else
-      events = client.user_timeline(client.user.screen_name, options)
-    end
-    
+  def chart(time_frame, event_type, events)  
     months = {}
     6.times do |i|
       if time_frame == 6
@@ -99,7 +92,7 @@ class User < ActiveRecord::Base
     months.values
   end
 
-   # def retweet_chart(time_frame)
+  # def retweet_chart(time_frame)
   #   options = {count: 200, include_rts: true}
   #   tweets = client.user_timeline(client.user.screen_name, options)
 
