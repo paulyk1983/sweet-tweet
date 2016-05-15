@@ -13,6 +13,10 @@
     };
 
     $scope.changeOrderAttribute = function(inputAttribute) {
+      $scope.sortDir = true;
+      if (inputAttribute === 'created_on') {
+        $scope.sortDir = false;
+      }
       $scope.orderAttribute = inputAttribute;
     };
 

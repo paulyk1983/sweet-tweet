@@ -1,11 +1,11 @@
  <div ng-app="app" class="content-wrapper">
   <div ng-controller="tweetsCtrl" ng-init="setup()">
-    <h2>My Tweets</h2>
+    <h1>Recent Tweets</h1>
     <div class="list-group">
-      <a href="javascript:void(0)" class="list-group-item">
+      <div class="list-group-item" style='background-color:#F9FAFB'>
         <table class="wd-wide">
           <tbody>
-            <tr>                    
+            <tr class='tweet-menu'>
               <td class="wd-xs">
                 <div class="ph">
                   <p class="m0">Image</p>
@@ -18,17 +18,23 @@
               </td>
               <td class="wd-sm hidden-xs hidden-sm">
                 <div class="ph">
-                   <p class="m0" ng-click="changeOrderAttribute('created_on')">Date</p>
+                  <p class="m0" ng-click="changeOrderAttribute('created_on')">
+                    <a href="javascript:void(0)"> Date</a>
+                  </p>
                 </div>
               </td>
               <td class="wd-xs hidden-xs hidden-sm">
                 <div class="ph">
-                   <p class="m0" ng-click="changeOrderAttribute('retweet_count')">Retweets</p>
+                  <p class="m0" ng-click="changeOrderAttribute('retweet_count')">
+                    <a href="javascript:void(0)"> Retweets</a>
+                  </p>
                 </div>
               </td>
               <td class="wd-xs hidden-xs hidden-sm">
                 <div class="ph">
-                   <p class="m0" ng-click="changeOrderAttribute('favorites_count')">Favorites</p>
+                  <p class="m0" ng-click="changeOrderAttribute('favorites_count')">
+                    <a href="javascript:void(0)"> Favorites</a>
+                  </p>
                 </div>
               </td>
               <td class="wd-sm">
@@ -39,16 +45,18 @@
             </tr>
           </tbody>
         </table>
-      </a>
+      </div>
     </div>
-    <div class="list-group" ng-repeat="tweet in tweets | orderBy:orderAttribute:true">            
+    <div style='height:20px'>      
+    </div>
+    <div class="list-group" ng-repeat="tweet in tweets | orderBy:orderAttribute:sortDir">            
       <a href="#" class="list-group-item">
         <table class="wd-wide">
           <tbody>
             <tr>
               <td class="wd-xs">
-                <div class="ph">
-                  <img style='border:none'src="{{ tweet.media[0].media_url }}" class="media-box-object img-responsive img-rounded thumb64">
+                <div class="ph" ng-if="tweet.media[0].media_url">
+                  <img style='border-color:green' src="{{ tweet.media[0].media_url }}" class="media-box-object img-responsive img-rounded thumb64">
                 </div>
               </td>
               <td>

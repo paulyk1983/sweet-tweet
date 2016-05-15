@@ -1,7 +1,8 @@
 class Api::V1::TweetsController < ApplicationController
   def index
     if current_user
-      @tweets = current_user.user_tweets
+      options = {count: 50, include_rts: true}
+      @tweets = current_user.client.user_timeline(current_user.twitter_handle, options)
       render 'index.json.jbuilder'     
     else
       redirect_to '/'
