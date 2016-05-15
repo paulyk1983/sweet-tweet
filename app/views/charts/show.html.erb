@@ -1,2 +1,13 @@
-<%= high_chart("some_id", @chart1) %>
-<%= high_chart("some_other_id", @chart2) %>
+<div class='chart-container' ng-app="app">
+  <div class="btn-group" role="group" aria-label="..." ng-controller="chartsCtrl">
+  {{ message }}
+    <button type="button" class="btn btn-default">Past 6 Months</button>
+    <button type="button" class="btn btn-default">Past Year</button>
+  </div>  
+  <div id='chart-1'>
+    <%= high_chart("some_id", @chart1) %>
+  </div>
+  <div id='chart-2' class='hidden'>
+    <%= high_chart("some_other_id", @chart2) %>
+  </div>  
+</div>

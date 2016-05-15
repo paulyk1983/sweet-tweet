@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
         end
       end
     end  
-    months.value
+    months.values
   end
 
   # def retweet_chart(number_of_months)
