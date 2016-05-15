@@ -39,7 +39,9 @@
               </td>
               <td class="wd-sm">
                 <div class="ph">
-                   <progressbar value="80" type="success" class="m0 progress-xs">Rank</progressbar>
+                   <progressbar value="80" type="success" class="m0 progress-xs" ng-click="changeOrderAttribute('rank')">
+                    <a href="javascript:void(0)"> Sweetness</a>
+                   </progressbar>
                 </div>
               </td>
             </tr>
@@ -49,7 +51,7 @@
     </div>
     <div style='height:20px'>      
     </div>
-    <div class="list-group" ng-repeat="tweet in tweets | orderBy:orderAttribute:sortDir">            
+    <div class="list-group" ng-repeat="tweet in tweets | orderBy:orderAttribute:sortDir | limitTo:30">            
       <a href="#" class="list-group-item">
         <table class="wd-wide">
           <tbody>
@@ -83,7 +85,7 @@
               </td>
               <td class="wd-sm">
                 <div class="ph">
-                  <progressbar value="80" type="success" class="m0 progress-xs">80%</progressbar>
+                  <progressbar value="80%" type="success" class="m0 progress-xs">{{ tweet.favorites_count + (tweet.retweet_count * 2) }}</progressbar>
                 </div>
               </td>
             </tr>
