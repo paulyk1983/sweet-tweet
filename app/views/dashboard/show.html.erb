@@ -85,58 +85,9 @@
         <div class="col-lg-12">
 
           <div id="panelChart2" class="panel panel-default panel demo">
-            <div class="panel-heading">
-               <div class="panel-title">Bar</div>
-            </div>
-            <div class="panel-body">
-               <div class="chart-bar flot-chart" style="padding: 0px; position: relative;">
-                <canvas class="flot-base" width="454" height="250" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 454px; height: 250px;">                  
-                </canvas>
-                <div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);">
-                  <div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;">
-                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 45px; top: 232px; left: 27px; text-align: center;">Jan</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 45px; top: 232px; left: 71px; text-align: center;">Feb</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 45px; top: 232px; left: 114px; text-align: center;">Mar</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 45px; top: 232px; left: 159px; text-align: center;">Apr</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 45px; top: 232px; left: 202px; text-align: center;">May</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 45px; top: 232px; left: 246px; text-align: center;">Jun</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 45px; top: 232px; left: 292px; text-align: center;">Jul</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 45px; top: 232px; left: 334px; text-align: center;">Aug</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 45px; top: 232px; left: 378px; text-align: center;">Sep</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; max-width: 45px; top: 232px; left: 422px; text-align: center;">Oct</div>
-                  </div>
-                  <div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;">
-                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 219px; left: 12px; text-align: right;">0</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 175px; left: 6px; text-align: right;">20</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 131px; left: 6px; text-align: right;">40</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 88px; left: 6px; text-align: right;">60</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 44px; left: 6px; text-align: right;">80</div>
-                    <div class="flot-tick-label tickLabel" style="position: absolute; top: 1px; left: 1px; text-align: right;">100</div>
-                  </div>
-                </div>
-                <canvas class="flot-overlay" width="454" height="250" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 454px; height: 250px;">                  
-                </canvas>
-                <div class="legend">
-                  <div style="position: absolute; width: 52px; height: 23px; top: 14px; right: 15px; opacity: 0.85; background-color: rgb(252, 252, 252);"> 
-                  </div>
-                  <table style="position:absolute;top:14px;right:15px;;font-size:smaller;color:#545454">
-                    <tbody>
-                      <tr>
-                        <td class="legendColorBox">
-                          <div style="border:1px solid #ccc;padding:1px">
-                            <div style="width:4px;height:0;border:5px solid #9cd159;overflow:hidden">                              
-                            </div>
-                          </div>
-                        </td>
-                        <td class="legendLabel">
-                          Sales
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
+            
+            <%= high_chart("chart-1", @chart1) %>
+            
             </div>
           </div>
       
