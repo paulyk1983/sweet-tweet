@@ -67,7 +67,10 @@
           imageThumb.className = imageThumb.className.replace( 'hidden', '' );
         }
       }, 850);
-      
+
+      var formUrl = document.getElementById("tweet-form").action;
+      formUrl = formUrl.replace("true", "false");
+      console.log(formUrl);
     };
 
     $scope.removeImage = function() {

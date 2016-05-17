@@ -22,8 +22,12 @@ class TweetsController < ApplicationController
     page = Page.find_by(id: params[:page_id])
     if page
       page.update(status: 'sent')
-    end 
-    current_user.tweet(twitter_params[:message], @image)
+    end
+    if params[:image] == 'true'
+      current_user.tweet_with_image(twitter_params[:message], page.image)
+    else
+      current_user.tweet(twitter_params[:message])
+    end    
   end
 
   def twitter_params
