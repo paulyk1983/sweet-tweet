@@ -42,6 +42,23 @@ class User < ActiveRecord::Base
     client.mentions_timeline
   end
 
+  def past_day(event_type, events)
+    today = Time.zone.today.to_s
+    events_today = 0
+    events.each do |event|
+      if event.created_at.strftime('%Y-%m-%d') == today.to_s
+        if event_type == 'retweets'
+          events_today += event.retweet_count
+        elsif event_type == 'favorites'
+          events_today += event.favorites_count
+        else
+          events_today += 1
+        end
+      end
+    end
+    events_today
+  end
+
   def past_six_months
     months = []
     6.times do |i|

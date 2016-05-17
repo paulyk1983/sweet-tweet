@@ -19,11 +19,11 @@
       <div class="panel widget bg-primary">
         <div class="row row-table">
           <div class="col-xs-4 text-center bg-primary-dark pv-lg">
-             <em class="icon-cloud-upload fa-3x"></em>
+             <i class="fa fa-retweet fa-3x" aria-hidden="true"></i>
           </div>
           <div class="col-xs-8 pv-lg">
-             <div class="h2 mt0">1700</div>
-             <div class="text-uppercase">Uploads</div>
+             <div class="h2 mt0"><%= @retweets_today %></div>
+             <div class="text-uppercase">Retweets</div>
           </div>
         </div>
       </div>
@@ -33,13 +33,12 @@
       <div class="panel widget bg-purple">
          <div class="row row-table">
             <div class="col-xs-4 text-center bg-purple-dark pv-lg">
-               <em class="icon-globe fa-3x"></em>
+               <em class="icon-heart fa-3x"></em>
             </div>
             <div class="col-xs-8 pv-lg">
-               <div class="h2 mt0">700
-                  <small>GB</small>
+               <div class="h2 mt0"><%= @favorites_today %>
                </div>
-               <div class="text-uppercase">Quota</div>
+               <div class="text-uppercase">Favorites</div>
             </div>
          </div>
       </div>
@@ -52,8 +51,8 @@
              <em class="icon-bubbles fa-3x"></em>
           </div>
           <div class="col-xs-8 pv-lg">
-             <div class="h2 mt0">500</div>
-             <div class="text-uppercase">Reviews</div>
+             <div class="h2 mt0"><%= @mentions_today %></div>
+             <div class="text-uppercase">Mentions</div>
           </div>
         </div>
       </div>
