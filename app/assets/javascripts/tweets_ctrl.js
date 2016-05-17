@@ -25,8 +25,12 @@
       var wordCountSpan = document.getElementById("word-count");
       if ($scope.wordCount < 0) {
         wordCountSpan.style["color"] = 'red';
+        document.getElementById("submit-tweet-btn").style["display"] = "none";
+        document.getElementById("submit-alert-btn").style["display"] = "inline";
       } else {
         wordCountSpan.style["color"] = 'green';
+        document.getElementById("submit-tweet-btn").style["display"] = "inline";
+        document.getElementById("submit-alert-btn").style["display"] = "none";
       }
     };
 
@@ -36,10 +40,15 @@
       } else {
         $scope.wordCount = 140 - $scope.message.length;
       }
-      if ($scope.wordCount < 0) {
+      var wordCountSpan = parseInt(document.getElementById("word-count").innerHTML);
+      if (wordCountSpan < 0) {
         document.getElementById("word-count").style["color"] = 'red';
+        document.getElementById("submit-tweet-btn").style["display"] = "none";
+        document.getElementById("submit-alert-btn").style["display"] = "inline";
       } else {
         document.getElementById("word-count").style["color"] = 'green';
+        document.getElementById("submit-tweet-btn").style["display"] = "inline";
+        document.getElementById("submit-alert-btn").style["display"] = "none";
       }
     };
 
@@ -68,9 +77,21 @@
         }
       }, 850);
 
+      setTimeout(function() {
+        var wordCountSpan = parseInt(document.getElementById("word-count").innerHTML);
+        if (wordCountSpan < 0) {
+          document.getElementById("word-count").style["color"] = 'red';
+          document.getElementById("submit-tweet-btn").style["display"] = "none";
+          document.getElementById("submit-alert-btn").style["display"] = "inline";
+        } else {
+          document.getElementById("word-count").style["color"] = 'green';
+          document.getElementById("submit-tweet-btn").style["display"] = "inline";
+          document.getElementById("submit-alert-btn").style["display"] = "none";
+        }
+      }, 1000);
+
       var formUrl = document.getElementById("tweet-form").action;
       formUrl = formUrl.replace("true", "false");
-      console.log(formUrl);
     };
 
     $scope.removeImage = function() {
@@ -80,7 +101,7 @@
       removeImageButton.className += " hidden";
 
       var addImageButton = document.getElementById('add-image');
-      addImageButton.className = removeImageButton.className.replace( ' hidden', '' );
+      addImageButton.className = addImageButton.className.replace( ' hidden', '' );
 
       var imageThumb = document.getElementById('image-thumb');
       imageThumb.className += "animated rollOut";
@@ -90,6 +111,11 @@
         image.className = image.className.replace( 'animated zoomOutLeft', 'animated fadeIn' );
       }, 700);
       
+    };
+
+    $scope.submitAlert = function() {
+      alert('You have to many characters in your tweet. Delete characters or remove image');
+      return false;
     };
 
     

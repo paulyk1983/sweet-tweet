@@ -13,9 +13,10 @@
           <img id='image-thumb' class='hidden' src="<%= @image %>">
         </div>
         <div>
-          <%= f.submit "Send Tweet", class: 'btn btn-large btn-success send-tweet' %>
+          <%= f.submit "Send Tweet", style: 'display:inline', id: 'submit-tweet-btn', class: 'btn btn-large btn-success send-tweet' %>
+          <input style ='display:none' ng-click="submitAlert()" value="Send Tweet" id="submit-alert-btn" class="btn btn-large btn-warning submit-tweet-alert">
           <div>Characters Left: <span id='word-count'>{{wordCount}}</span></div>
-        </div>  
+        </div> 
       <% end %>
     </div>
     <div class='tweet-img col-xs-12 col-md-4'>
