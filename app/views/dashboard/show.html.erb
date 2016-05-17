@@ -82,15 +82,13 @@
   <div class="row">
     <div class="col-lg-9">
       <div class="row">
-        <div class="col-lg-12">
-
-          <div id="panelChart2" class="panel panel-default panel demo">
+        <div class="col-lg-12" ng-app='app'>
+          <div id="panelChart2" class="panel panel-default panel demo" ng-controller='dashboardCtrl' ng-init="setup()">
             
             <%= high_chart("chart-1", @chart1) %>
             
             </div>
-          </div>
-      
+          </div>      
         </div>
         <!-- END chart-->
         <!-- START multiple list group -->
