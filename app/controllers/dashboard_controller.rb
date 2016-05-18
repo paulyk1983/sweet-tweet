@@ -59,7 +59,7 @@ class DashboardController < ApplicationController
 
     @pending_pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id) 
 
-    options = {count: 200, include_rts: true}
+    options = {count: 25, include_rts: true}
     keys = current_user.client
     # follower_ids = keys.followers(current_user.twitter_handle)
     # follower_id_list = []
@@ -72,6 +72,8 @@ class DashboardController < ApplicationController
     tweets = keys.user_timeline(current_user.twitter_handle, options)
     mentions = keys.mentions_timeline(options)
 
+    events = current_user.tweets
+
     @retweets_today = current_user.past_day('retweets', tweets)
     @favorites_today = current_user.past_day('favorites', tweets)
     @mentions_today = current_user.past_day('mentions', mentions)
@@ -79,9 +81,9 @@ class DashboardController < ApplicationController
     @chart1 = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "Tweet Performance - Last 6 Months")
       f.xAxis(categories: current_user.past_six_months)
-      f.series(name: "Retweets", yAxis: 0, data: current_user.chart(6, 'retweets', tweets))
-      f.series(name: "Favorites", yAxis: 1, data: current_user.chart(6, 'favorites', tweets))
-      f.series(name: "Mentions", yAxis: 1, data: current_user.chart(6, 'mentions', mentions))
+      f.series(name: "Retweets", yAxis: 0, data: current_user.chart(6, 'retweets', events))
+      f.series(name: "Favorites", yAxis: 1, data: current_user.chart(6, 'favorites', events))
+     # f.series(name: "Mentions", yAxis: 1, data: current_user.chart(6, 'mentions', mentions))
 
       f.yAxis [
         {title: {text: "", margin: 70} },

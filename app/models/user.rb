@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :pages
+  has_many :tweets
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
@@ -76,7 +77,6 @@ class User < ActiveRecord::Base
   end
 
   def chart(number_of_months, event_type, events)    
-
     months = {}
     number_of_months.times do |i|
       if number_of_months == 6
@@ -88,26 +88,11 @@ class User < ActiveRecord::Base
 
     day_of_month = Time.zone.today.strftime('%e').to_i
     chart_start_date = Time.zone.today - (number_of_months - 1).month - day_of_month
-    last_tweet_date = events.last.created_at
-    event_array = [events]
-
-    if last_tweet_date > chart_start_date
-      max_id = events.last.id + 1
-      options = {count: 200, include_rts: true, max_id: max_id}
-      if event_type == 'mentions'  
-        more_events = client.mentions_timeline(options)
-      else
-        more_events = client.user_timeline(twitter_handle, options)
-      end
-      event_array << more_events
-    end
-       
-    event_array.each do |event_block|
-      event_block.each do |event|
-        if event.created_at > chart_start_date
-          event_month = event.created_at.strftime('%b')
+      events.each do |event|
+        if event.tweet_time > chart_start_date
+          event_month = event.tweet_time.strftime('%b')
           if event_type == 'retweets'
-            count = event.retweet_count           
+            count = event.retweets_count           
           elsif event_type == 'favorites'
             count = event.favorites_count   
           else
@@ -118,7 +103,6 @@ class User < ActiveRecord::Base
           months[event_month] = new_total
         end
       end
-    end  
     months.values
   end
 
