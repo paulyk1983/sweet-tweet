@@ -10,6 +10,11 @@ class DashboardController < ApplicationController
       current_user.update(profile_pic: profile_pic)
     end
 
+    unless current_user.profile_pic
+      profile_pic = current_user.client.user.profile_image_url
+      current_user.update(profile_pic: profile_pic)
+    end
+
     @pending_pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id) 
 
     options = {count: 200, include_rts: true}
