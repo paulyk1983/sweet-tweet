@@ -134,7 +134,7 @@
             </table>
           </a>
         </div>         
-        <div>
+        <div ng-app='app'>
           <div ng-controller="tweetsCtrl" ng-init="setup()">
             <div class="list-group" ng-repeat="tweet in tweets | limitTo: 5">            
               <a href="#" class="list-group-item">
@@ -181,43 +181,11 @@
           </div>
         </div>   
       </div>
-      <div>          
-        <% @followers.each do |follower| %>
-          <%= follower.name %>
-        <% end %>
-      </div>
       <!-- END dashboard main content-->
       <!-- START dashboard sidebar-->
       <aside class="col-lg-3">
         <!-- START loader widget-->
-        <div>
-          <h3 class="text-center text-thin">Recent Followers</h3>
-          <ul class="nav">  
-            <% @followers.each do |follower| %>          
-              <li>
-                 <!-- START User status-->
-                 <a href="#" class="media-box p mt0">
-                    <span class="pull-right">
-                       <span class="circle circle-success circle-lg"></span>
-                    </span>
-                    <span class="pull-left">
-                       <!-- Contact avatar-->
-                       <img src="<%= follower.profile_image_url %>" alt="Image" class="media-box-object img-circle thumb48">
-                    </span>
-                    <!-- Contact info-->
-                    <span class="media-box-body">
-                       <span class="media-box-heading">
-                          <strong><%= follower.name %></strong>
-                          <br>
-                          <small class="text-muted">Designeer</small>
-                       </span>
-                    </span>
-                 </a>
-                 <!-- END User status-->               
-              </li>
-            <% end %>                     
-          </ul>
-        </div>
+        
         <!-- END loader widget-->
         <!-- START messages and activity-->
         <div class="panel panel-default">
