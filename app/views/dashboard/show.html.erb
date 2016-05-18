@@ -92,58 +92,67 @@
         </div>
         <!-- END chart-->
         <!-- START multiple list group -->
-        <h2>Most Current Tweets</h2>
-        <div class="list-group">
-          <a href="#" class="list-group-item">
-            <table class="wd-wide">
-              <tbody>
-                <tr>                    
-                  <td class="wd-xs">
-                    <div class="ph">
-                      <p class="m0">Image</p>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="ph">
-                       <p class="m0">Text</p>
-                    </div>
-                  </td>
-                  <td class="wd-sm hidden-xs hidden-sm">
-                    <div class="ph">
-                       <p class="m0">Date</p>
-                    </div>
-                  </td>
-                  <td class="wd-xs hidden-xs hidden-sm">
-                    <div class="ph">
-                       <p class="m0">
-                          <em class="icon-users mr fa-lg"></em>Retweets</p>
-                    </div>
-                  </td>
-                  <td class="wd-xs hidden-xs hidden-sm">
-                    <div class="ph">
-                       <p class="m0">Favorites</p>
-                    </div>
-                  </td>
-                  <td class="wd-sm">
-                    <div class="ph">
-                       <progressbar value="80" type="success" class="m0 progress-xs">Rank</progressbar>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </a>
-        </div>         
-        <div ng-app='app'>
+         <div class="content-wrapper">
           <div ng-controller="tweetsCtrl" ng-init="setup()">
-            <div class="list-group" ng-repeat="tweet in tweets | limitTo: 5">            
+            <h1>Recent Tweets</h1>
+            <div class="list-group">
+              <div class="list-group-item" style='background-color:#F9FAFB'>
+                <table class="wd-wide">
+                  <tbody>
+                    <tr class='tweet-menu'>
+                      <td class="wd-xs">
+                        <div class="ph">
+                          <p class="m0">Image</p>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="ph">
+                           <p class="m0" ng-click="changeOrderAttribute('text')">Text</p>
+                        </div>
+                      </td>
+                      <td class="wd-sm hidden-xs hidden-sm">
+                        <div class="ph">
+                          <p class="m0" ng-click="changeOrderAttribute('created_on')">
+                            <a href="javascript:void(0)"> Date</a>
+                          </p>
+                        </div>
+                      </td>
+                      <td class="wd-xs hidden-xs hidden-sm">
+                        <div class="ph">
+                          <p class="m0" ng-click="changeOrderAttribute('retweet_count')">
+                            <a href="javascript:void(0)"> Retweets</a>
+                          </p>
+                        </div>
+                      </td>
+                      <td class="wd-xs hidden-xs hidden-sm">
+                        <div class="ph">
+                          <p class="m0" ng-click="changeOrderAttribute('favorites_count')">
+                            <a href="javascript:void(0)"> Favorites</a>
+                          </p>
+                        </div>
+                      </td>
+                      <td class="wd-sm">
+                        <div class="ph">
+                           <progressbar value="80" type="success" class="m0 progress-xs" ng-click="changeOrderAttribute('rank')">
+                            <a href="javascript:void(0)"> Sweetness</a>
+                           </progressbar>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style='height:20px'>      
+            </div>
+            <div class="list-group" ng-repeat="tweet in tweets | orderBy:orderAttribute:sortDir | limitTo:5">            
               <a href="#" class="list-group-item">
                 <table class="wd-wide">
                   <tbody>
                     <tr>
                       <td class="wd-xs">
-                        <div class="ph">
-                          <img style='border:none'src="{{ tweet.media[0].media_url }}" class="media-box-object img-responsive img-rounded thumb64">
+                        <div class="ph" ng-if="tweet.media[0].media_url">
+                          <img style='border-color:green' src="{{ tweet.media[0].media_url }}" class="media-box-object img-responsive img-rounded thumb64">
                         </div>
                       </td>
                       <td>
@@ -153,7 +162,7 @@
                       </td>
                       <td class="wd-sm hidden-xs hidden-sm">
                         <div class="ph">                               
-                          <small class="text-muted">{{ tweet.created_at }}</small>
+                          <small class="text-muted">{{ tweet.created_at | date : format : 'M' }}</small>
                         </div>
                       </td>
                       <td class="wd-xs hidden-xs hidden-sm">
@@ -170,7 +179,7 @@
                       </td>
                       <td class="wd-sm">
                         <div class="ph">
-                          <progressbar value="80" type="success" class="m0 progress-xs">80%</progressbar>
+                          <progressbar value="80%" type="success" class="m0 progress-xs">{{ tweet.favorites_count + (tweet.retweet_count * 2) }}</progressbar>
                         </div>
                       </td>
                     </tr>
@@ -178,7 +187,7 @@
                 </table>
               </a>
             </div>
-          </div>
+          </div>  
         </div>   
       </div>
       <!-- END dashboard main content-->
