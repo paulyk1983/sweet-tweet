@@ -110,6 +110,19 @@
         var image = document.getElementById('image');
         image.className = image.className.replace( 'animated zoomOutLeft', 'animated fadeIn' );
       }, 700);
+
+      setTimeout(function() {
+        var wordCountSpan = parseInt(document.getElementById("word-count").innerHTML);
+        if (wordCountSpan < 0) {
+          document.getElementById("word-count").style["color"] = 'red';
+          document.getElementById("submit-tweet-btn").style["display"] = "none";
+          document.getElementById("submit-alert-btn").style["display"] = "inline";
+        } else {
+          document.getElementById("word-count").style["color"] = 'green';
+          document.getElementById("submit-tweet-btn").style["display"] = "inline";
+          document.getElementById("submit-alert-btn").style["display"] = "none";
+        }
+      }, 1000);
       
     };
 
