@@ -1,8 +1,33 @@
 class DashboardController < ApplicationController
-  def show
+  def show    
     unless current_user.twitter_handle
       user_twitter_handle = current_user.client.user.screen_name
       current_user.update(twitter_handle: user_twitter_handle)
+    end
+
+    unless Tweet.first
+      options = {count: 200, include_rts: true}
+      tweets = current_user.client.user_timeline(current_user.twitter_handle, options)
+      tweets.each do |tweet|
+        if !tweet.media[0]
+          image = ''
+        else
+          image = tweet.media[0].media_url
+        end
+        Tweet.create(
+          user_id: current_user.id,
+          retweets_count: tweet.retweet_count,
+          favorites_count: tweet.favorites_count,
+          image: image,
+          message: tweet.text,
+          tweet_time: tweet.created_at,
+          twitter_id: tweet.id
+        )
+      end
+    end
+
+    if Tweet.last.id < 199
+
     end
 
     unless current_user.profile_pic
