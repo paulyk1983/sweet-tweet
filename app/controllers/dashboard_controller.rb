@@ -21,13 +21,13 @@ class DashboardController < ApplicationController
           image: image,
           message: tweet.text,
           tweet_time: tweet.created_at,
-          twitter_id: tweet.id
+          twitter_id: tweet.id.to_s
         )
       end
     end
 
-    if Tweet.last.id < 199
-      options = {count: 200, include_rts: true, since_id: Tweet.last.twitter_id}
+    if Tweet.count == 200
+      options = {count: 200, include_rts: true, max_id: Tweet.first.twitter_id.to_i}
       tweets = current_user.client.user_timeline(current_user.twitter_handle, options)
       tweets.each do |tweet|
         if !tweet.media[0]
@@ -42,7 +42,7 @@ class DashboardController < ApplicationController
           image: image,
           message: tweet.text,
           tweet_time: tweet.created_at,
-          twitter_id: tweet.id
+          twitter_id: tweet.id.to_s
         )
       end
     end
