@@ -181,6 +181,11 @@
           </div>
         </div>   
       </div>
+      <div>          
+        <% @followers.each do |follower| %>
+          <%= follower.name %>
+        <% end %>
+      </div>
       <!-- END dashboard main content-->
       <!-- START dashboard sidebar-->
       <aside class="col-lg-3">
@@ -230,7 +235,7 @@
                    </div>
                 </div>
               <% end %>
-           </div>
+           </div>           
            <!-- END list group-->
            <!-- START panel footer-->
            <div class="panel-footer clearfix">

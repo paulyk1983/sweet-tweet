@@ -5,10 +5,16 @@ class DashboardController < ApplicationController
       current_user.update(twitter_handle: user_twitter_handle)
     end
 
-    @pending_pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id)
+    @pending_pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id) 
 
     options = {count: 200, include_rts: true}
     keys = current_user.client
+    follower_ids = keys.followers(current_user.twitter_handle, {count: 5})
+    follower_id_list = []
+    follower_ids.each do |follower_id|
+      follower_id_list << follower_id.id
+    end
+    @followers = keys.users(follower_id_list)
     tweets = keys.user_timeline(current_user.twitter_handle, options)
     mentions = keys.mentions_timeline(options)
 
