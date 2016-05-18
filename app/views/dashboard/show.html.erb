@@ -217,7 +217,10 @@
                          </span>
                       </div>
                       <div class="media-box-body clearfix">                      
-                         <div class="media-box-heading"><a href="/pages" class="text-info m0" title="<%= page.long_url %>"><%= truncate(page.long_url, :length => 32) %></a>
+                         <div class="media-box-heading">
+                          <a href="/pages" class="text-info m0" title="<%= page.long_url %>">
+                            <%= truncate(page.long_url, :length => 32) %>
+                          </a>
                          </div>             
                       </div>
                    </div>

@@ -1,3 +1,29 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pending-pages {
+  background-color: #d9ebf6;
+  min-height: 200px;
+  margin-left: 35px;
+  margin-bottom: 30px;
+  padding-bottom: 25px;
+  box-shadow: 5px 5px 20px grey;
+}
+
+.pending-page {
+  box-shadow: 5px 5px 10px grey;
+}
+
+.url-input {
+  margin-left: 20px;
+  margin-top: 20px;
+  background-color: white;
+  padding:25px;
+  box-shadow: 5px 5px 20px grey;
+}
+
+.submit-url-btn {
+  box-shadow: 5px 5px 10px grey;
+  margin-left: 15px;
+}
