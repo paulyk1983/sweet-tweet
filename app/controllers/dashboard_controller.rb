@@ -27,7 +27,24 @@ class DashboardController < ApplicationController
     end
 
     if Tweet.last.id < 199
-
+      options = {count: 200, include_rts: true, since_id: Tweet.last.twitter_id}
+      tweets = current_user.client.user_timeline(current_user.twitter_handle, options)
+      tweets.each do |tweet|
+        if !tweet.media[0]
+          image = ''
+        else
+          image = tweet.media[0].media_url
+        end
+        Tweet.create(
+          user_id: current_user.id,
+          retweets_count: tweet.retweet_count,
+          favorites_count: tweet.favorites_count,
+          image: image,
+          message: tweet.text,
+          tweet_time: tweet.created_at,
+          twitter_id: tweet.id
+        )
+      end
     end
 
     unless current_user.profile_pic
