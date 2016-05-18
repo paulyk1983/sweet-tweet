@@ -9,10 +9,12 @@ class DashboardController < ApplicationController
 
     options = {count: 200, include_rts: true}
     keys = current_user.client
-    follower_ids = keys.followers(current_user.twitter_handle, {count: 5})
+    follower_ids = keys.followers(current_user.twitter_handle, {count: 1})
     follower_id_list = []
-    follower_ids.each do |follower_id|
-      follower_id_list << follower_id.id
+    follower_ids.each_with_index do |follower_id, i|
+      if i < 5
+        follower_id_list << follower_id.id
+      end
     end
     @followers = keys.users(follower_id_list)
     tweets = keys.user_timeline(current_user.twitter_handle, options)
