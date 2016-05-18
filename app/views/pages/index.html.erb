@@ -15,19 +15,19 @@
   <hr>
   </div>
 </div>
-<div class='row' ng-app="app">
-  <div class='pending-pages col-md-4' ng-controller="pagesCtrl" ng-init="setup()">
+<div class='row'>
+  <div class='pending-pages col-md-4'>
     <h2>Pending Pages:</h2>
     <% @pages.each do |page| %>
-        <hr>
-        <h4><%= page.long_url %></h4>
-        <%= form_tag '/pages', method: :patch do %>  
-          <div>
-            <%= hidden_field_tag :long_url, page.long_url %>
-            <%= hidden_field_tag :id, page.id %>
-            <%= submit_tag page.long_url %>
-          </div>
-        <% end %>
+      <hr>
+      <h4><%= page.long_url %></h4>
+      <%= form_tag '/pages', method: :patch do %>  
+        <div>
+          <%= hidden_field_tag :long_url, page.long_url %>
+          <%= hidden_field_tag :id, page.id %>
+          <%= submit_tag page.long_url %>
+        </div>
       <% end %>
+    <% end %>
   </div>
 </div>

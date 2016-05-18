@@ -79,10 +79,10 @@
     </div>
   </div>
   <!-- END widgets box-->
-  <div class="row">
+  <div class="row" ng-app='app'>
     <div class="col-lg-9">
       <div class="row">
-        <div class="col-lg-12" ng-app='app'>
+        <div class="col-lg-12">
           <div id="panelChart2" class="panel panel-default panel demo" ng-controller='dashboardCtrl' ng-init="setup()">
             
             <%= high_chart("chart-1", @chart1) %>
@@ -134,7 +134,7 @@
             </table>
           </a>
         </div>         
-        <div ng-app="app">
+        <div>
           <div ng-controller="tweetsCtrl" ng-init="setup()">
             <div class="list-group" ng-repeat="tweet in tweets | limitTo: 5">            
               <a href="#" class="list-group-item">
@@ -206,115 +206,30 @@
         <!-- START messages and activity-->
         <div class="panel panel-default">
            <div class="panel-heading">
-              <div class="panel-title">Latest activities</div>
+              <div class="panel-title">Pending Pages</div>
            </div>
            <!-- START list group-->
            <div class="list-group">
               <!-- START list group item-->
-              <div class="list-group-item">
-                 <div class="media-box">
-                    <div class="pull-left">
-                       <span class="fa-stack">
-                          <em class="fa fa-circle fa-stack-2x text-purple"></em>
-                          <em class="fa fa-cloud-upload fa-stack-1x fa-inverse text-white"></em>
-                       </span>
-                    </div>
-                    <div class="media-box-body clearfix">
-                       <small class="text-muted pull-right ml">15m</small>
-                       <div class="media-box-heading"><a href="#" class="text-purple m0">NEW FILE</a>
-                       </div>
-                       <p class="m0">
-                          <small><a href="#">Bootstrap.xls</a>
-                          </small>
-                       </p>
-                    </div>
-                 </div>
-              </div>
+              
               <!-- END list group item-->
               <!-- START list group item-->
-              <div class="list-group-item">
-                 <div class="media-box">
-                    <div class="pull-left">
-                       <span class="fa-stack">
-                          <em class="fa fa-circle fa-stack-2x text-info"></em>
-                          <em class="fa fa-file-text-o fa-stack-1x fa-inverse text-white"></em>
-                       </span>
-                    </div>
-                    <div class="media-box-body clearfix">
-                       <small class="text-muted pull-right ml">2h</small>
-                       <div class="media-box-heading"><a href="#" class="text-info m0">NEW DOCUMENT</a>
-                       </div>
-                       <p class="m0">
-                          <small><a href="#">Bootstrap.doc</a>
-                          </small>
-                       </p>
-                    </div>
-                 </div>
-              </div>
-              <!-- END list group item-->
-              <!-- START list group item-->
-              <div class="list-group-item">
-                 <div class="media-box">
-                    <div class="pull-left">
-                       <span class="fa-stack">
-                          <em class="fa fa-circle fa-stack-2x text-danger"></em>
-                          <em class="fa fa-exclamation fa-stack-1x fa-inverse text-white"></em>
-                       </span>
-                    </div>
-                    <div class="media-box-body clearfix">
-                       <small class="text-muted pull-right ml">5h</small>
-                       <div class="media-box-heading"><a href="#" class="text-danger m0">BROADCAST</a>
-                       </div>
-                       <p class="m0"><a href="#">Read</a>
-                       </p>
-                    </div>
-                 </div>
-              </div>
-              <!-- END list group item-->
-              <!-- START list group item-->
-              <div class="list-group-item">
-                 <div class="media-box">
-                    <div class="pull-left">
-                       <span class="fa-stack">
-                          <em class="fa fa-circle fa-stack-2x text-success"></em>
-                          <em class="fa fa-clock-o fa-stack-1x fa-inverse text-white"></em>
-                       </span>
-                    </div>
-                    <div class="media-box-body clearfix">
-                       <small class="text-muted pull-right ml">15h</small>
-                       <div class="media-box-heading"><a href="#" class="text-success m0">NEW MEETING</a>
-                       </div>
-                       <p class="m0">
-                          <small>On
-                             <em>10/12/2015 09:00 am</em>
-                          </small>
-                       </p>
-                    </div>
-                 </div>
-              </div>
-              <!-- END list group item-->
-              <!-- START list group item-->
-              <div class="list-group-item">
-                 <div class="media-box">
-                    <div class="pull-left">
-                       <span class="fa-stack">
-                          <em class="fa fa-circle fa-stack-2x text-warning"></em>
-                          <em class="fa fa-tasks fa-stack-1x fa-inverse text-white"></em>
-                       </span>
-                    </div>
-                    <div class="media-box-body clearfix">
-                       <small class="text-muted pull-right ml">1w</small>
-                       <div class="media-box-heading"><a href="#" class="text-warning m0">TASKS COMPLETION</a>
-                       </div>
-                       <div class="progress progress-xs m0">
-                          <div role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" style="width: 22%" class="progress-bar progress-bar-warning progress-bar-striped">
-                             <span class="sr-only">22% Complete</span>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-              <!-- END list group item-->
+              <% @pending_pages.each do |page| %>
+                <div class="list-group-item">
+                   <div class="media-box">
+                      <div class="pull-left">
+                         <span class="fa-stack">
+                            <em class="fa fa-circle fa-stack-2x text-info"></em>
+                            <em class="fa fa-file-text-o fa-stack-1x fa-inverse text-white"></em>
+                         </span>
+                      </div>
+                      <div class="media-box-body clearfix">                      
+                         <div class="media-box-heading"><a href="/pages" class="text-info m0" title="<%= page.long_url %>"><%= truncate(page.long_url, :length => 32) %></a>
+                         </div>             
+                      </div>
+                   </div>
+                </div>
+              <% end %>
            </div>
            <!-- END list group-->
            <!-- START panel footer-->

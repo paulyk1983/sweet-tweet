@@ -5,6 +5,8 @@ class DashboardController < ApplicationController
       current_user.update(twitter_handle: user_twitter_handle)
     end
 
+    @pending_pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id)
+
     options = {count: 200, include_rts: true}
     keys = current_user.client
     tweets = keys.user_timeline(current_user.twitter_handle, options)
