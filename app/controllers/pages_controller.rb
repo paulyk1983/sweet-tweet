@@ -36,7 +36,8 @@ class PagesController < ApplicationController
       status: 'pending',
       user_id: current_user.id
     )
-    redirect_to '/tweets/new'
+    page_id = Page.last.id
+    redirect_to "/tweets/new?id=#{page_id}"
   end
 
   def update
