@@ -28,7 +28,7 @@ class TweetsController < ApplicationController
     else
       current_user.tweet(twitter_params[:message])
     end
-    
+    flash[:success] = 'Sweet! Your tweet has been sent!!'
     redirect_to '/pages'
   end
 
