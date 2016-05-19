@@ -67,7 +67,22 @@ class DashboardController < ApplicationController
       current_user.update(profile_page: profile_page)
     end
 
-    
+    unless current_user.followers.first
+      follower_ids = current_user.client.followers(current_user.twitter_handle)
+      follower_id_list = []
+      follower_ids.each do |follower_id|
+        follower_id_list << follower_id.id
+      end
+      followers = current_user.client.users(follower_id_list)
+      followers.each do |follower|
+        Follow.create(
+          user_id: current_user.id,
+          name: follower.name,
+          profile_image: follower.profile_image_url,
+          profile_page: follower.url
+        )
+      end
+    end
 
     @pending_pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id) 
 

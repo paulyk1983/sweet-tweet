@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :pages
   has_many :tweets
   has_many :mentions
+  has_many :followers
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
