@@ -5,7 +5,7 @@ class DashboardController < ApplicationController
       current_user.update(twitter_handle: user_twitter_handle)
     end
 
-    unless Tweet.first
+    unless current_user.tweets.first
       options = {count: 200, include_rts: true}
       tweets = current_user.client.user_timeline(current_user.twitter_handle, options)
       tweets.each do |tweet|
@@ -26,7 +26,7 @@ class DashboardController < ApplicationController
       end
     end
 
-    if Tweet.count == 200
+    if current_user.tweets.count == 200
       options = {count: 200, include_rts: true, max_id: Tweet.first.twitter_id.to_i}
       tweets = current_user.client.user_timeline(current_user.twitter_handle, options)
       tweets.each do |tweet|
@@ -57,6 +57,16 @@ class DashboardController < ApplicationController
       current_user.update(profile_page: profile_page)
     end
 
+    unless current_user.mentions.first
+      mentions = current_user.client.mentions_timeline
+      mentions.each do |mention|
+        Mention.create(
+          user_id: current_user.id,
+          mention_time: mention.created_at
+        )
+      end
+    end
+
     @pending_pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id) 
 
     options = {count: 25, include_rts: true}
@@ -69,21 +79,20 @@ class DashboardController < ApplicationController
     #   end
     # end
     # @followers = keys.users(follower_id_list)
-    tweets = keys.user_timeline(current_user.twitter_handle, options)
-    mentions = keys.mentions_timeline(options)
 
-    events = current_user.tweets
+    recent_tweets = keys.user_timeline(current_user.twitter_handle, options)
+    recent_mentions = keys.mentions_timeline(options)
 
-    @retweets_today = current_user.past_day('retweets', tweets)
-    @favorites_today = current_user.past_day('favorites', tweets)
-    @mentions_today = current_user.past_day('mentions', mentions)
+    @retweets_today = current_user.past_day('retweets', recent_tweets)
+    @favorites_today = current_user.past_day('favorites', recent_tweets)
+    @mentions_today = current_user.past_day('mentions', recent_mentions)
 
     @chart1 = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "Tweet Performance - Last 6 Months")
       f.xAxis(categories: current_user.past_six_months)
-      f.series(name: "Retweets", yAxis: 0, data: current_user.chart(6, 'retweets', events))
-      f.series(name: "Favorites", yAxis: 1, data: current_user.chart(6, 'favorites', events))
-     # f.series(name: "Mentions", yAxis: 1, data: current_user.chart(6, 'mentions', mentions))
+      f.series(name: "Retweets", yAxis: 0, data: current_user.chart(6, 'retweets', current_user.tweets))
+      f.series(name: "Favorites", yAxis: 1, data: current_user.chart(6, 'favorites', current_user.tweets))
+      f.series(name: "Mentions", yAxis: 1, data: current_user.chart_mentions(6, current_user.mentions))
 
       f.yAxis [
         {title: {text: "", margin: 70} },

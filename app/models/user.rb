@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :pages
   has_many :tweets
+  has_many :mentions
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
@@ -37,10 +38,6 @@ class User < ActiveRecord::Base
   def user_tweets
     options = {count: 50, include_rts: true}
     client.user_timeline(current_user.twitter_handle, options)
-  end
-
-  def user_mentions
-    client.mentions_timeline
   end
 
   def past_day(event_type, events)
@@ -88,22 +85,46 @@ class User < ActiveRecord::Base
 
     day_of_month = Time.zone.today.strftime('%e').to_i
     chart_start_date = Time.zone.today - (number_of_months - 1).month - day_of_month
-      events.each do |event|
-        if event.tweet_time > chart_start_date
-          event_month = event.tweet_time.strftime('%b')
-          if event_type == 'retweets'
-            count = event.retweets_count           
-          elsif event_type == 'favorites'
-            count = event.favorites_count   
-          else
-            count = 1
-          end
-          old_total = months[event_month]
-          new_total = count + old_total
-          months[event_month] = new_total
+
+    events.each do |event|
+      if event.tweet_time > chart_start_date
+        event_month = event.tweet_time.strftime('%b')
+        if event_type == 'retweets'
+          count = event.retweets_count           
+        elsif event_type == 'favorites'
+          count = event.favorites_count   
+        else
+          count = 1
         end
+        old_total = months[event_month]
+        new_total = count + old_total
+        months[event_month] = new_total
       end
+    end
     months.values
   end
 
+  def chart_mentions(number_of_months, mentions)    
+    months = {}
+    number_of_months.times do |i|
+      if number_of_months == 6
+        months[past_six_months[i]] = 0
+      else
+        months[past_year[i]] = 0
+      end
+    end
+
+    day_of_month = Time.zone.today.strftime('%e').to_i
+    chart_start_date = Time.zone.today - (number_of_months - 1).month - day_of_month
+    
+    mentions.each do |mention|
+      if mention.mention_time > chart_start_date
+        mention_month = mention.mention_time.strftime('%b')
+        old_total = months[mention_month]
+        new_total = old_total + 1
+        months[mention_month] = new_total
+      end
+    end
+    months.values
+  end
 end
