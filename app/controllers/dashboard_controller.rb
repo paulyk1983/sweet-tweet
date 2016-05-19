@@ -71,13 +71,17 @@ class DashboardController < ApplicationController
       followers = current_user.client.users('BrennerMichael', 'eC0mmerceDev', 'Tanisha_Paskey', 'PowerShieldPL', 'RobbedOfSleep')
       followers.each do |follower|
         Follower.create(
+          user_id: current_user.id,
           twitter_id: follower.id.to_s,
           profile_image: follower.profile_image_url,
-          profile_page: follower.url
+          profile_page: follower.url,
+          name: name
         )
       end
     end
 
+    @followers = current_user.followers
+    
     @pending_pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id) 
 
     options = {count: 25, include_rts: true}
