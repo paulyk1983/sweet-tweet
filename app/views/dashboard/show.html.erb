@@ -186,6 +186,39 @@
         
         <!-- END loader widget-->
         <!-- START messages and activity-->
+        <div class='panel panel-default'>          
+          <h3 class="text-center text-thin">Recent Followers</h3>
+          <ul class="nav">  
+            <% @followers.each do |follower| %>          
+              <li>
+                 <!-- START User status-->
+                 <a href="<%= follower.profile_page %>" target="_blank" class="media-box p mt0">
+                   
+                    <span class="pull-left">
+                       <!-- Contact avatar-->
+                       <img src="<%= follower.profile_image %>" alt="Image" class="media-box-object img-circle thumb48">
+                    </span>
+                    <!-- Contact info-->
+                    <span class="media-box-body">
+                       <span class="media-box-heading">
+                          <strong><%= follower.name %></strong>
+                          <br>
+                          <small class="text-muted">
+                            <% if follower.friendship %>
+                              You are following
+                            <% else %>
+                              You are not followeing  
+                            <% end %>
+                          </small>
+                       </span>
+                    </span>
+                 </a>
+                 <!-- END User status-->               
+              </li>
+            <% end %>                     
+          </ul>        
+        </div>
+
         <div class="panel panel-default">
            <div class="panel-heading">
               <div class="panel-title">Pending Pages</div>
@@ -218,39 +251,7 @@
            </div>                     
            <!-- END panel-footer-->
         </div>
-        <div class='panel panel-defualt'>
-          <div class="panel-heading">
-            <div class="panel-title">Pending Pages</div>
-          </div>
-          <div>
-            <h3 class="text-center text-thin">Recent Followers</h3>
-            <ul class="nav">  
-              <% @followers.each do |follower| %>          
-                <li>
-                   <!-- START User status-->
-                   <a href="<%= follower.profile_page %>" target="_blank" class="media-box p mt0">
-                      <span class="pull-right">
-                         <span class="circle circle-success circle-lg"></span>
-                      </span>
-                      <span class="pull-left">
-                         <!-- Contact avatar-->
-                         <img src="<%= follower.profile_image %>" alt="Image" class="media-box-object img-circle thumb48">
-                      </span>
-                      <!-- Contact info-->
-                      <span class="media-box-body">
-                         <span class="media-box-heading">
-                            <strong><%= follower.name %></strong>
-                            <br>
-                            <small class="text-muted">Designeer</small>
-                         </span>
-                      </span>
-                   </a>
-                   <!-- END User status-->               
-                </li>
-              <% end %>                     
-            </ul>
-          </div>
-        </div>
+        
         <!-- END messages and activity-->
      </aside>
      <!-- END dashboard sidebar-->

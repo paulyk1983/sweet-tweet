@@ -81,7 +81,13 @@ class DashboardController < ApplicationController
     end
 
     @followers = current_user.followers
-    
+    @followers.each do |follower|
+      if follower.name == 'Tanisha _Paskey'
+        @friendship_status = 'You are not following' 
+      else
+        @friendship_status = 'You are following'
+      end 
+    end
     @pending_pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id) 
 
     options = {count: 25, include_rts: true}
