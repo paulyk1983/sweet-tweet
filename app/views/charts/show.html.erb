@@ -4,23 +4,7 @@
     <div class="btn-group" role="group" aria-label="..." style='margin-right:25px'>
       <button id='button' type="button" class="btn btn-default active" ng-click='showChartOne()'>Past 6 Months</button>
       <button type="button" class="btn btn-default" ng-click='showChartTwo()'>Past Year</button>
-    </div>  
-    <span class="btn-group" data-toggle="buttons" ng-click="toggleSeries(0)" style='position:relative; left:2px;'>    
-      <label class="btn btn-default active">
-        <input type="checkbox" autocomplete="off"> Retweets
-      </label>
-    </span>
-    <span class="btn-group" data-toggle="buttons" ng-click="toggleSeries(1)" style='margin:0px'>        
-      <label class="btn btn-default active">
-        <input type="checkbox" autocomplete="off"> Favorites
-      </label>      
-    </span>  
-    <span class="btn-group" data-toggle="buttons" ng-click="toggleSeries(2)" style='position:relative; right:3px;'> 
-      <label class="btn btn-default active">
-        <input type="checkbox" autocomplete="off"> Mentions
-      </label>
-    </span>
-
+    </div>
     <%= high_chart("chart-1", @chart1) %>
     <%= high_chart("chart-2", @chart2) %> 
   </div>
