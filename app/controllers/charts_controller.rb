@@ -1,5 +1,8 @@
 class ChartsController < ApplicationController
   def show
+
+    day_of_month = Time.zone.today.strftime('%e').to_i
+    @test = chart_start_date = Time.zone.today - (12 - 1).month - day_of_month
    
     @chart1 = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(text: "Tweet Performance - Last 6 Months")

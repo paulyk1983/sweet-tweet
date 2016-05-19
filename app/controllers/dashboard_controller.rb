@@ -26,8 +26,8 @@ class DashboardController < ApplicationController
       end
     end
 
-    if current_user.tweets.count == 200
-      options = {count: 200, include_rts: true, max_id: Tweet.first.twitter_id.to_i}
+    if current_user.tweets.count == 199
+      options = {count: 200, include_rts: true, max_id: Tweet.last.twitter_id.to_i}
       tweets = current_user.client.user_timeline(current_user.twitter_handle, options)
       tweets.each do |tweet|
         if !tweet.media[0]
@@ -47,6 +47,16 @@ class DashboardController < ApplicationController
       end
     end
 
+    unless current_user.mentions.first
+      mentions = current_user.client.mentions_timeline({count: 200})
+      mentions.each do |mention|
+        Mention.create(
+          user_id: current_user.id,
+          mention_time: mention.created_at
+        )
+      end
+    end
+
     unless current_user.profile_pic
       profile_pic = current_user.client.user.profile_image_url
       current_user.update(profile_pic: profile_pic)
@@ -57,15 +67,7 @@ class DashboardController < ApplicationController
       current_user.update(profile_page: profile_page)
     end
 
-    unless current_user.mentions.first
-      mentions = current_user.client.mentions_timeline
-      mentions.each do |mention|
-        Mention.create(
-          user_id: current_user.id,
-          mention_time: mention.created_at
-        )
-      end
-    end
+    
 
     @pending_pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id) 
 
