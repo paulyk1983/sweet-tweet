@@ -1,16 +1,5 @@
 <div class="content-wrapper">
   <div class="content-heading">
-    <div class="pull-right">
-      <div class="btn-group">
-        <button type="button" data-toggle="dropdown" class="btn btn-default">English</button>
-        <ul role="menu" class="dropdown-menu dropdown-menu-right animated fadeInUpShort">
-          <li><a href="#" data-set-lang="en">English</a>
-          </li>
-          <li><a href="#" data-set-lang="es">Spanish</a>
-          </li>
-        </ul>
-      </div>
-    </div>
     Dashboard
   </div>
   <!-- START widgets box-->
@@ -84,9 +73,9 @@
       <div class="row">
         <div class="col-lg-12">
           <div id="panelChart2" class="panel panel-default panel demo" ng-controller='dashboardCtrl' ng-init="setup()">
-            
+            <a href='/charts'>
             <%= high_chart("chart-1", @chart1) %>
-            
+            </a>
             </div>
           </div>      
         </div>
@@ -226,14 +215,7 @@
                    </div>
                 </div>
               <% end %>
-           </div>           
-           <!-- END list group-->
-           <!-- START panel footer-->
-           <div class="panel-footer clearfix">
-              <a href="#" class="pull-left">
-                 <small>Load more</small>
-              </a>
-           </div>
+           </div>                     
            <!-- END panel-footer-->
         </div>
         <!-- END messages and activity-->
