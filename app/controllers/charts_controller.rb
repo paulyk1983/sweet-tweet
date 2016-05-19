@@ -1,6 +1,5 @@
 class ChartsController < ApplicationController
   def show
-
     day_of_month = Time.zone.today.strftime('%e').to_i
     @test = chart_start_date = Time.zone.today - (12 - 1).month - day_of_month
    

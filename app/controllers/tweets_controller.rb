@@ -27,7 +27,9 @@ class TweetsController < ApplicationController
       current_user.tweet_with_image(twitter_params[:message], page.image)
     else
       current_user.tweet(twitter_params[:message])
-    end    
+    end
+    
+    redirect_to '/pages'
   end
 
   def twitter_params

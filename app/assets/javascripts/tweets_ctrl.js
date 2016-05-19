@@ -91,7 +91,8 @@
       }, 1000);
 
       var formUrl = document.getElementById("tweet-form").action;
-      formUrl = formUrl.replace("true", "false");
+      var newFormUrl = formUrl.replace("false", "true");
+      document.getElementById("tweet-form").action = newFormUrl;
     };
 
     $scope.removeImage = function() {

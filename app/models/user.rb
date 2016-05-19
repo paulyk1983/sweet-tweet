@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def tweet_with_image(tweet)
+  def tweet_with_image(tweet, file)
     client.update_with_media(
       tweet, 
       open("tweet_image.jpg")
