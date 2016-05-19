@@ -135,7 +135,7 @@
             <div style='height:20px'>      
             </div>
             <div class="list-group" ng-repeat="tweet in tweets | orderBy:orderAttribute:sortDir | limitTo:5">            
-              <a href="#" class="list-group-item">
+              <a href="/tweets" class="list-group-item">
                 <table class="wd-wide">
                   <tbody>
                     <tr>
@@ -220,9 +220,11 @@
         </div>
 
         <div class="panel panel-default">
-           <div class="panel-heading">
-              <div class="panel-title">Pending Pages</div>
-           </div>
+           <a href='/pages'>
+             <div class="panel-heading">
+                <div class="panel-title">Pending Pages</div>
+             </div>
+           </a>
            <!-- START list group-->
            <div class="list-group">
               <!-- START list group item-->
