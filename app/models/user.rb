@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def past_day(event_type, events)
-    today = Time.zone.today.to_s
+    today = Date.today.to_s
     events_today = 0
     events.each do |event|
       if event.created_at.strftime('%Y-%m-%d') == today.to_s
@@ -84,8 +84,8 @@ class User < ActiveRecord::Base
       end
     end
 
-    day_of_month = Time.zone.today.strftime('%e').to_i
-    chart_start_date = Time.zone.today - (number_of_months - 1).month - day_of_month
+    day_of_month = Date.today.strftime('%e').to_i
+    chart_start_date = Date.today - (number_of_months - 1).month - day_of_month
 
     events.each do |event|
       if event.tweet_time > chart_start_date

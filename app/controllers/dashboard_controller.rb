@@ -92,15 +92,6 @@ class DashboardController < ApplicationController
 
     options = {count: 25, include_rts: true}
     keys = current_user.client
-    # follower_ids = keys.followers(current_user.twitter_handle)
-    # follower_id_list = []
-    # follower_ids.each_with_index do |follower_id, i|
-    #   if i < 5
-    #     follower_id_list << follower_id.id
-    #   end
-    # end
-    # @followers = keys.users(follower_id_list)
-
     recent_tweets = keys.user_timeline(current_user.twitter_handle, options)
     recent_mentions = keys.mentions_timeline(options)
 
