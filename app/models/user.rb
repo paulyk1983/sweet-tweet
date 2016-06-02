@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   end
 
   def past_day(event_type, events)
-    today = Date.today.to_s
+    today = Time.zone.today.to_s
     events_today = 0
     events.each do |event|
       if event.created_at.strftime('%Y-%m-%d') == today.to_s
