@@ -24,6 +24,7 @@ default: &default
 development:
   <<: *default
   database: sweet-tweet_development
+  username: root
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -56,8 +57,12 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
+  adapter: postgresql
+  encoding: utf8
   database: sweet-tweet_test
+  pool: 5
+  username: root
+  password:
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -81,5 +86,5 @@ test:
 production:
   <<: *default
   database: sweet-tweet_production
-  username: sweet-tweet
+  username: root
   password: <%= ENV['SWEET-TWEET_DATABASE_PASSWORD'] %>
