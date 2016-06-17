@@ -61,7 +61,7 @@ test:
   encoding: utf8
   database: sweet-tweet_test
   pool: 5
-  username: root
+  username: paulkrajewski
   password:
 
 # As with config/secrets.yml, you never want to store sensitive information,
