@@ -3,8 +3,8 @@ require 'open-uri'
 
 class PagesController < ApplicationController
   def index
-    page = MetaInspector.new('https://finishlinecorp.com')
-    @data = page.title
+    # page = MetaInspector.new('https://finishlinecorp.com')
+    # @data = page.title
     @pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id)
   end
 
@@ -19,7 +19,11 @@ class PagesController < ApplicationController
       parameters: {'longUrl' => params[:long_url]}.to_json
     ).body
     short_url = data["id"]
-    page = MetaInspector.new(params[:long_url])
+
+    # page = MetaInspector.new(params[:long_url])
+    # above code will generate this error if faraday options are not set: SSL_connect returned=1 errno=0 state=error: certificate verify failed
+    page = MetaInspector.new(params[:long_url], faraday_options: { ssl: { verify: false } })
+    
     title = page.title
     image = page.images.best
     open(image) { |f|
