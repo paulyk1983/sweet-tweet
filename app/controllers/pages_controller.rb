@@ -23,7 +23,7 @@ class PagesController < ApplicationController
     # page = MetaInspector.new(params[:long_url])
     # above code will generate this error if faraday options are not set: SSL_connect returned=1 errno=0 state=error: certificate verify failed
     page = MetaInspector.new(params[:long_url], faraday_options: { ssl: { verify: false } })
-    
+
     title = page.title
     image = page.images.best
     open(image) { |f|
@@ -51,7 +51,11 @@ class PagesController < ApplicationController
       parameters: {'longUrl' => params[:long_url]}.to_json
     ).body
     short_url = data["id"]
-    page = MetaInspector.new(params[:long_url])
+    
+    # page = MetaInspector.new(params[:long_url])
+    # above code will generate this error if faraday options are not set: SSL_connect returned=1 errno=0 state=error: certificate verify failed
+    page = MetaInspector.new(params[:long_url], faraday_options: { ssl: { verify: false } })
+    
     title = page.title
     image = page.images.best
     open(image) { |f|
