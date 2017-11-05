@@ -8,23 +8,30 @@
   <div class='pending-pages col-md-4'>
     <h2>Pending Pages:</h2>
     <% @pages.each do |page| %>
-      <hr>
-      <%= form_tag '/pages', method: :patch do %>  
-        <div>
-          <%= hidden_field_tag :long_url, page.long_url %>
-          <%= hidden_field_tag :id, page.id %>
-          <span class='pending-page'>
-            <%= submit_tag truncate(page.long_url, :length => 50), {title: page.long_url} %>
-          </span>  
-        </div>
-      <% end %>
+      <div class="pending-page">
+        <span title="<%= page.long_url %>">URL: <%= truncate(page.long_url, :length => 50) %></span>
+        <br>
+        <span>
+            <%= form_tag '/pages', method: :patch do %>  
+                <%= hidden_field_tag :long_url, page.long_url %>
+                <%= hidden_field_tag :id, page.id %>        
+                <%= submit_tag "Craft", class: "btn btn-info", style: "float:left; margin-right:15px;" %>                 
+            <% end %>
+          
+            <%= form_tag "/pages/#{page.id}", method: :delete do %>  
+                <%= hidden_field_tag :id, page.id %>        
+                <%= submit_tag "Remove", class: "btn btn-danger" %>                    
+            <% end %>
+          </span>
+      </div>
+      <br>
     <% end %>
   </div>
   <div class='url-input col-md-4'>    
     <%= form_tag '/pages', method: :post do %>
         Enter Url: 
         <%= text_field_tag :long_url %>
-        <%= submit_tag "Submit URL", {class: 'submit-url-btn'} %>
+        <%= submit_tag "Submit URL", {class: 'submit-url-danger'} %>
     <% end %>
   </div>
 </div>

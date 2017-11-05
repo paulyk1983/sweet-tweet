@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/pages' => 'pages#new'
   post '/pages' => 'pages#create'
   patch '/pages' => 'pages#update'
+  delete '/pages/:id' => 'pages#delete'
 
   get '/tweets' => 'tweets#index'
   get '/charts' => 'charts#show'

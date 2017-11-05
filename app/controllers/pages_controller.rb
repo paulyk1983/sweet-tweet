@@ -41,7 +41,7 @@ class PagesController < ApplicationController
       user_id: current_user.id
     )
     page_id = Page.last.id
-    redirect_to "/tweets/new?id=#{page_id}"
+    redirect_to "/pages"
   end
 
   def update
@@ -72,5 +72,17 @@ class PagesController < ApplicationController
       image: image
     )
     redirect_to "/tweets/new?id=#{page.id}"
+  end
+
+  def delete
+    page = Page.find_by(id: params[:id])
+    page.delete
+    if page.save
+      flash[:success] = "The saved page has been removed"
+      redirect_to "/pages"
+    else
+      flash[:danger] = "Something went wrong. Could not delete that page"
+      redirect_to "/pages"
+    end
   end
 end
