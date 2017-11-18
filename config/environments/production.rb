@@ -77,10 +77,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # # For twitter
-  # config.twitter_key = "5hhH66UKQecD1rRv9Lr6D1g5d"
-  # config.twitter_secret = "CxCZ3vw8DE3zyYIsda0thGRiQzR3cQD5hPGH1WYUmn4SFunVlt"
+  # For twitter
+  config.twitter_key = "5hhH66UKQecD1rRv9Lr6D1g5d"
+  config.twitter_secret = "CxCZ3vw8DE3zyYIsda0thGRiQzR3cQD5hPGH1WYUmn4SFunVlt"
 
-  # # For Url Shortener
-  # config.shortener_key = "AIzaSyD4KUmwPDhWNgzwKSYp4ooIxzwtEXJqhEY"
+  # For Url Shortener
+  config.shortener_key = "AIzaSyD4KUmwPDhWNgzwKSYp4ooIxzwtEXJqhEY"
 end
