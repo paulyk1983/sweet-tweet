@@ -48,6 +48,12 @@ class PagesController < ApplicationController
   def update
     puts '**********************'
     puts ENV['SHORTENER_KEY']
+    puts ENV['TWITTER_KEY']
+    puts ENV['TWITTER_SECRET']
+    puts ENV['RAILS_ENV']
+    puts '**********************'
+    puts ''
+
     response = Unirest.post(
       "https://www.googleapis.com/urlshortener/v1/url?key=#{ENV['SHORTENER_KEY']}",
       headers: {"Accept" => "application/json", "Content-Type" => "application/json"},
