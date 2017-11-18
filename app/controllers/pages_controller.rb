@@ -13,12 +13,13 @@ class PagesController < ApplicationController
   end
 
   def create
-    data = Unirest.post(
+    response = Unirest.post(
       "https://www.googleapis.com/urlshortener/v1/url?key=#{ENV['SHORTENER_KEY']}",
       headers: {"Accept" => "application/json", "Content-Type" => "application/json"},
       parameters: {'longUrl' => params[:long_url]}.to_json
-    ).body
-    short_url = data["id"]
+    )
+    data = response.body
+    short_url = data["id"]    
 
     # page = MetaInspector.new(params[:long_url])
     # above code will generate this error if faraday options are not set: SSL_connect returned=1 errno=0 state=error: certificate verify failed
@@ -45,12 +46,20 @@ class PagesController < ApplicationController
   end
 
   def update
-    data = Unirest.post(
+    response = Unirest.post(
       "https://www.googleapis.com/urlshortener/v1/url?key=#{ENV['SHORTENER_KEY']}",
       headers: {"Accept" => "application/json", "Content-Type" => "application/json"},
       parameters: {'longUrl' => params[:long_url]}.to_json
-    ).body
+    )
+    data = response.body
     short_url = data["id"]
+
+    puts '**********************'
+    puts response.code
+    puts response.headers # Response headers
+    puts response.body # Parsed body
+    puts response.raw_body # Unparsed body
+    puts '**********************'
     
     # page = MetaInspector.new(params[:long_url])
     # above code will generate this error if faraday options are not set: SSL_connect returned=1 errno=0 state=error: certificate verify failed
