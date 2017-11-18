@@ -45,50 +45,42 @@ class PagesController < ApplicationController
     redirect_to "/pages"
   end
 
-  def update
-    puts '**********************'
-    puts ENV['SHORTENER_KEY']
-    puts ENV['TWITTER_KEY']
-    puts ENV['TWITTER_SECRET']
-    puts ENV['RAILS_ENV']
-    puts '**********************'
-    puts ''
+  def update    
 
     response = Unirest.post(
-      "https://www.googleapis.com/urlshortener/v1/url?key=#{ENV['SHORTENER_KEY']}",
+      "https://www.googleapis.com/urlshortener/v1/url?key=1234",
       headers: {"Accept" => "application/json", "Content-Type" => "application/json"},
       parameters: {'longUrl' => params[:long_url]}.to_json
     )
     data = response.body
     short_url = data["id"]
 
-    puts '**********************'
-    puts response.code
-    puts response.headers # Response headers
-    puts response.body # Parsed body
-    puts response.raw_body # Unparsed body
-    puts '**********************'
-    
-    # page = MetaInspector.new(params[:long_url])
-    # above code will generate this error if faraday options are not set: SSL_connect returned=1 errno=0 state=error: certificate verify failed
-    page = MetaInspector.new(params[:long_url], faraday_options: { ssl: { verify: false } })
-    
-    title = page.title
-    image = page.images.best
-    open(image) { |f|
-      File.open("tweet_image.jpg", "wb") do |file|
-        file.puts f.read
-      end
-    }
+    if response.code != 200
+      flash[:danger] = "Something went wrong on the web -> Error code: #{response.code}. Sorry for the inconvenience"
+      redirect_to "/pages"
+    else
+      # page = MetaInspector.new(params[:long_url])
+      # above code will generate this error if faraday options are not set: SSL_connect returned=1 errno=0 state=error: certificate verify failed
+      page = MetaInspector.new(params[:long_url], faraday_options: { ssl: { verify: false } })
+      
+      title = page.title
+      image = page.images.best
+      open(image) { |f|
+        File.open("tweet_image.jpg", "wb") do |file|
+          file.puts f.read
+        end
+      }
 
-    page = Page.find_by(id: params[:id])
-    page.update(
-      long_url: params[:long_url],
-      short_url: short_url,
-      title: title,
-      image: image
-    )
-    redirect_to "/tweets/new?id=#{page.id}"
+      page = Page.find_by(id: params[:id])
+      page.update(
+        long_url: params[:long_url],
+        short_url: short_url,
+        title: title,
+        image: image
+      )
+      redirect_to "/tweets/new?id=#{page.id}"
+    end
+
   end
 
   def delete
