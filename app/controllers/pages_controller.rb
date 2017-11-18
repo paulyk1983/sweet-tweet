@@ -19,36 +19,42 @@ class PagesController < ApplicationController
       parameters: {'longUrl' => params[:long_url]}.to_json
     )
     data = response.body
-    short_url = data["id"]    
+    short_url = data["id"]  
 
-    # page = MetaInspector.new(params[:long_url])
-    # above code will generate this error if faraday options are not set: SSL_connect returned=1 errno=0 state=error: certificate verify failed
-    page = MetaInspector.new(params[:long_url], faraday_options: { ssl: { verify: false } })
+    if response.code != 200
+      flash[:danger] = "Something went wrong on the web -> Error code: #{response.code}. Sorry for the inconvenience"
+      redirect_to "/pages"
+    else  
 
-    title = page.title
-    image = page.images.best
-    open(image) { |f|
-      File.open("tweet_image.jpg", "wb") do |file|
-        file.puts f.read
-      end
-    }   
-    
-    Page.create(
-      long_url: params[:long_url],
-      short_url: short_url,
-      title: title,
-      image: image,
-      status: 'pending',
-      user_id: current_user.id
-    )
-    page_id = Page.last.id
-    redirect_to "/pages"
+      # page = MetaInspector.new(params[:long_url])
+      # above code will generate this error if faraday options are not set: SSL_connect returned=1 errno=0 state=error: certificate verify failed
+      page = MetaInspector.new(params[:long_url], faraday_options: { ssl: { verify: false } })
+
+      title = page.title
+      image = page.images.best
+      open(image) { |f|
+        File.open("tweet_image.jpg", "wb") do |file|
+          file.puts f.read
+        end
+      }   
+      
+      Page.create(
+        long_url: params[:long_url],
+        short_url: short_url,
+        title: title,
+        image: image,
+        status: 'pending',
+        user_id: current_user.id
+      )
+      page_id = Page.last.id
+      redirect_to "/pages"
+    end
   end
 
   def update    
 
     response = Unirest.post(
-      "https://www.googleapis.com/urlshortener/v1/url?key=1234",
+      "https://www.googleapis.com/urlshortener/v1/url?key=#{ENV['SHORTENER_KEY']}",
       headers: {"Accept" => "application/json", "Content-Type" => "application/json"},
       parameters: {'longUrl' => params[:long_url]}.to_json
     )
