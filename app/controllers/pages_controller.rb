@@ -6,6 +6,11 @@ class PagesController < ApplicationController
     # page = MetaInspector.new('https://finishlinecorp.com')
     # @data = page.title
     @pages = Page.where("status = ? AND user_id = ?", 'pending', current_user.id)
+
+    puts "*****************"
+    puts current_user.profile_pic
+    puts current_user.id
+    puts "*****************"
   end
 
   def new
