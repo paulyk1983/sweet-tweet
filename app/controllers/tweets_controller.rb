@@ -23,15 +23,14 @@ class TweetsController < ApplicationController
     if page
       page.update(status: 'sent')
     end
-
-    # SWITCH OUT CODE AFTER FIXING JS FILES NOT PRECOMPILING IN P ERROR
+    
     current_user.tweet_with_image(twitter_params[:message], page.image)
-    # if params[:image] == 'true'
-    #   current_user.tweet_with_image(twitter_params[:message], page.image)
-    # else
-    #   current_user.tweet(twitter_params[:message])
-    # end
 
+    if params[:image] == 'true'
+      current_user.tweet_with_image(twitter_params[:message], page.image)
+    else
+      current_user.tweet(twitter_params[:message])
+    end
     flash[:success] = 'Sweet! Your tweet has been sent!!'
     redirect_to '/pages'
   end

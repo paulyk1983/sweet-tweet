@@ -2,7 +2,7 @@
   <div ng-controller="tweetsCtrl">
     <div class='composer col-xs-12 col-md-4'>
       <h2>Tweet Composer</h2>
-      <%= form_for :tweet, url: "/tweets?page_id=#{@page_id}&image=false", html: {id: 'tweet-form' } , method: :post do |f| %>
+      <%= form_for :tweet, url: "/tweets?page_id=#{@page_id}&image=true", html: {id: 'tweet-form' } , method: :post do |f| %>
         <%= f.text_area :message, 
                         :value => @message, 
                         "ng-init" => "message='#{@message}'; addCount();", 
