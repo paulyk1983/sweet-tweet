@@ -24,11 +24,8 @@ class TweetsController < ApplicationController
       page.update(status: 'sent')
     end
 
-    current_user.tweet_with_image(twitter_params[:message], page.image)
-
     if params[:image] == 'true'
       current_user.tweet_with_image(twitter_params[:message], page.image)
-      current_user.delete_tweet_image
     else
       current_user.tweet(twitter_params[:message])
     end
