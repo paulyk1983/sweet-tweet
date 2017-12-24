@@ -28,7 +28,10 @@ class User < ActiveRecord::Base
     client.update_with_media(
       tweet, 
       open("tweet_image.jpg")
-    )
+    )   
+  end
+
+  def delete_tweet_image
     File.delete("tweet_image.jpg")
   end
 
